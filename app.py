@@ -1,0 +1,236 @@
+import streamlit as st
+from datetime import date
+from pathlib import Path
+import os
+
+# ---------------- PAGE CONFIG ----------------
+st.set_page_config(
+    page_title="CYBERSUMMIT 2026",
+    page_icon="🔐",
+    layout="wide"
+)
+
+# ---------------- CYBER THEME ----------------
+st.markdown("""
+<style>
+.stApp {
+    background: radial-gradient(circle at top, #0f2027, #000000 60%);
+    color: #E0F7FA;
+}
+
+/* Headings */
+h1, h2, h3 {
+    color: #00ffff;
+    text-shadow: 0 0 15px rgba(0,255,255,0.7);
+    text-align: center;
+}
+
+/* Cards */
+.cyber-card {
+    background: rgba(0,255,255,0.08);
+    border: 1px solid rgba(0,255,255,0.4);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 0 25px rgba(0,255,255,0.35);
+}
+
+/* Timeline */
+.timeline {
+    background: rgba(0,0,0,0.7);
+    border-left: 4px solid #00ffff;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+
+/* Placeholders */
+.logo-box {
+    height: 110px;
+    border: 2px dashed #00ffff;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00ffff;
+    font-weight: bold;
+}
+
+.flyer-box {
+    height: 180px;
+    border: 2px dashed #00ffff;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00ffff;
+    margin-bottom: 10px;
+}
+
+.avatar {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 2px dashed #00ffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
+    margin: auto;
+}
+
+/* Button */
+div.stButton > button {
+    background: linear-gradient(90deg, #00ffff, #00c6ff);
+    color: #000;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 14px 40px;
+    border-radius: 30px;
+    border: none;
+    box-shadow: 0 0 22px rgba(0,255,255,0.8);
+    transition: 0.3s ease;
+}
+
+div.stButton > button:hover {
+    box-shadow: 0 0 40px rgba(0,255,255,1);
+    transform: scale(1.05);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    div.stButton > button {
+        width: 100%;
+        font-size: 20px;
+        padding: 16px;
+    }
+    .logo-box { height: 80px; }
+    .flyer-box { height: 140px; }
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    color: #9ee7e7;
+    font-size: 14px;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# ---------------- HEADER ----------------
+c1, c2, c3 = st.columns([1, 3, 1])
+
+with c1:
+    st.markdown('<div class="logo-box">PROJECT LOGO</div>', unsafe_allow_html=True)
+
+with c2:
+    st.markdown("""
+    <h1>CYBERSUMMIT 2026</h1>
+    <h3>Cyber Security Workshop</h3>
+    """, unsafe_allow_html=True)
+
+with c3:
+    st.markdown('<div class="logo-box">ISACA LOGO</div>', unsafe_allow_html=True)
+
+st.divider()
+
+# ---------------- ABOUT ----------------
+st.markdown("<h2>🔍 What is CYBERSUMMIT 2026?</h2>", unsafe_allow_html=True)
+
+st.markdown("""
+<div class="cyber-card">
+<b>CYBERSUMMIT 2026</b> is a Cyber Security workshop organized by the  
+<b>ISACA Student Group of the University of Sri Jayewardenepura</b>.
+
+<ul>
+<li>Cyber security fundamentals</li>
+<li>Threat detection & prevention</li>
+<li>Hands-on industry exposure</li>
+<li>Career guidance</li>
+</ul>
+</div>
+""", unsafe_allow_html=True)
+
+st.divider()
+
+# ---------------- TIMELINE ----------------
+st.markdown("<h2>🗓️ Event Timeline</h2>", unsafe_allow_html=True)
+
+st.markdown("""
+<div class="timeline"><b>📢 Registration Opens</b><br>01 March 2026</div>
+<div class="timeline"><b>⏳ Registration Closes</b><br>20 March 2026</div>
+<div class="timeline"><b>🎓 Workshop Day</b><br>25 March 2026</div>
+<div class="timeline"><b>🏁 Event Ends</b><br>25 March 2026</div>
+""", unsafe_allow_html=True)
+
+st.divider()
+
+# ---------------- REGISTER (THIS PART MATTERS) ----------------
+st.markdown("<h2>📝 Ready to Join?</h2>", unsafe_allow_html=True)
+
+left, center, right = st.columns([1, 2, 1])
+
+with center:
+    if st.button("🚀 Register Now", use_container_width=True):
+        st.switch_page("pages/registration.py")
+
+
+st.divider()
+
+# ---------------- NOTICE BOARD ----------------
+st.markdown("<h2>📢 Notice Board</h2>", unsafe_allow_html=True)
+
+n1, n2, n3 = st.columns(3)
+
+def notice_card(text):
+    st.markdown(f"""
+    <div class="cyber-card">
+        <div class="flyer-box">FLYER IMAGE</div>
+        <p>{text}</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+with n1:
+    notice_card("🚀 Registrations are now open. Secure your seat today!")
+
+with n2:
+    notice_card("📜 Digital certificates will be provided to all participants.")
+
+with n3:
+    notice_card("⚠️ Limited seats available. Register before deadline.")
+
+st.divider()
+
+# ---------------- CONTACT PERSONS ----------------
+st.markdown("<h2>📞 Contact Persons</h2>", unsafe_allow_html=True)
+
+p1, p2, p3 = st.columns(3)
+
+def contact_card(icon, name, phone, email):
+    st.markdown(f"""
+    <div class="cyber-card" style="text-align:center;">
+        <div class="avatar">{icon}</div><br>
+        <b>{name}</b><br><br>
+        📱 {phone}<br>
+        📧 {email}
+    </div>
+    """, unsafe_allow_html=True)
+
+with p1:
+    contact_card("👨‍💻", "Kasun Perera", "077 123 4567", "kasun@email.com")
+
+with p2:
+    contact_card("👩‍💻", "Nimali Fernando", "071 234 5678", "nimali@email.com")
+
+with p3:
+    contact_card("🧑‍💻", "Ravindu Silva", "075 345 6789", "ravindu@email.com")
+
+st.divider()
+
+# ---------------- FOOTER ----------------
+st.markdown(f"""
+<div class="footer">
+Developed by <b>Sachin Jayasinghe</b><br>
+Created Date: {date.today().strftime("%d %B %Y")}<br>
+© CYBERSUMMIT 2026
+</div>
+""", unsafe_allow_html=True)
