@@ -2,6 +2,9 @@ import streamlit as st
 from datetime import date
 from pathlib import Path
 import os
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+
 
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(
@@ -144,7 +147,7 @@ with c1:
 
 with c2:
     st.markdown("""
-    <h1>CYBERSUMMIT 2026</h1>
+    <h1>CYBER SUMMIT 2026</h1>
     <h3>Cyber Security Workshop</h3>
     """, unsafe_allow_html=True)
 
@@ -158,14 +161,19 @@ st.markdown("<h2>🔍 What is CYBERSUMMIT 2026?</h2>", unsafe_allow_html=True)
 
 st.markdown("""
 <div class="cyber-card">
-<b>CYBERSUMMIT 2026</b> is a Cyber Security workshop organized by the  
-<b>ISACA Student Group of the University of Sri Jayewardenepura</b>.
-
+<b>CYBERSUMMIT 2026</b> is <b>the flagship event of ISACA Student Group of
+University of Sri Jayewardenepura</b>, proudly organized for <b>third consecutive
+year</b> in <b>March 2026</b>. This one day summit brings together the passionate
+students and experienced professionals from Cyber Security industry.<br><br>
+The event will feature insightful, interactie and engaging sessions conducted
+by industry experts, offering participants a real world perspective on Cyber Security,
+risk, governance and emerging digital threats.<br><br>
+<h2>What You Can Gain from Cyber Summit 2026 ?</h2>           
 <ul>
-<li>Cyber security fundamentals</li>
-<li>Threat detection & prevention</li>
-<li>Hands-on industry exposure</li>
-<li>Career guidance</li>
+<li>Industry Level Exposure - Interact with professionals and understand real-world Cyber Security Practices</li>
+<li>Advance Technology - Explore latest trends in Digital Security, Risk assessment & AI</li>
+<li>Skill development - Enhance critical thinking</li>
+<li>Career Advantage - Strengthen your CV with summit participation and practical insights</li>
 </ul>
 </div>
 """, unsafe_allow_html=True)
@@ -176,10 +184,10 @@ st.divider()
 st.markdown("<h2>🗓️ Event Timeline</h2>", unsafe_allow_html=True)
 
 st.markdown("""
-<div class="timeline"><b>📢 Registration Opens</b><br>01 March 2026</div>
-<div class="timeline"><b>⏳ Registration Closes</b><br>20 March 2026</div>
-<div class="timeline"><b>🎓 Workshop Day</b><br>25 March 2026</div>
-<div class="timeline"><b>🏁 Event Ends</b><br>25 March 2026</div>
+<div class="timeline"><b>📢 Registration Opens</b><br>26 February 2026</div>
+<div class="timeline"><b>⏳ Registration Closes</b><br>6 March 2026 </div>
+<div class="timeline"><b>🎓 Workshop Day</b><br>14 March 2026</div>
+<div class="timeline"><b>🏁 Event Ends</b><br>14 March 2026</div>
 """, unsafe_allow_html=True)
 
 st.divider()

@@ -1,7 +1,7 @@
 import streamlit as st
-import csv
-import os
 from datetime import datetime
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(
@@ -13,33 +13,16 @@ st.set_page_config(
 # ---------------- STYLES ----------------
 st.markdown("""
 <style>
-/* ===== REMOVE STREAMLIT HEADER (TOP BAR) ===== */
-header[data-testid="stHeader"] {
-    display: none;
-}
+header[data-testid="stHeader"] { display: none; }
+footer { display: none; }
+#MainMenu { visibility: hidden; }
+.main .block-container { padding-top: 1rem; }
 
-/* ===== REMOVE STREAMLIT FOOTER (BOTTOM AREA) ===== */
-footer {
-    display: none;
-}
-
-/* ===== REMOVE MAIN MENU (three dots menu) ===== */
-#MainMenu {
-    visibility: hidden;
-}
-
-/* Remove extra padding at top */
-.main .block-container {
-    padding-top: 1rem;
-}
-
-/* Background */
 .stApp {
     background: radial-gradient(circle at top, #140025, #000000 80%);
     color: #F3E8FF;
 }
 
-/* Header pill */
 .header-pill {
     width: 100%;
     background: linear-gradient(180deg, rgba(30,0,50,0.95), rgba(15,0,35,0.95));
@@ -58,13 +41,11 @@ footer {
     text-shadow: 0 0 14px rgba(168,85,247,1);
 }
 
-/* Labels */
 label {
     color: #E9D5FF !important;
     font-weight: 600;
 }
 
-/* Inputs & selectbox */
 input, textarea, select {
     background-color: rgba(25,0,40,0.85) !important;
     color: #F3E8FF !important;
@@ -72,12 +53,10 @@ input, textarea, select {
     border-radius: 12px !important;
 }
 
-/* Placeholder */
 input::placeholder, textarea::placeholder {
     color: #C084FC !important;
 }
 
-/* Submit button (PURE WHITE) */
 div.stButton > button {
     background-color: #ffffff !important;
     color: #4C1D95 !important;
@@ -88,7 +67,7 @@ div.stButton > button {
     border: none !important;
     width: 100% !important;
     box-shadow: 0 0 25px rgba(168,85,247,0.8) !important;
-    transition: all 0.3s ease;
+    transition: 0.3s ease;
 }
 
 div.stButton > button:hover {
@@ -98,7 +77,6 @@ div.stButton > button:hover {
     transform: scale(1.04);
 }
 
-/* Success box */
 .success-box {
     background: rgba(40, 0, 60, 0.9);
     border: 1px solid #C084FC;
@@ -107,7 +85,6 @@ div.stButton > button:hover {
     box-shadow: 0 0 35px rgba(168,85,247,0.6);
     margin-top: 30px;
 }
-
 </style>
 """, unsafe_allow_html=True)
 
@@ -142,21 +119,21 @@ with st.form("registration_form"):
         "Other"
     ]
 
-    university = st.selectbox("🎓 University *", universities)
+    # Default = University of Sri Jayewardenepura
+    university = st.selectbox("🎓 University *", universities, index=1)
 
     other_university = ""
     if university == "Other":
         other_university = st.text_input("✍️ Specify University *")
 
-    # OPTIONAL MESSAGE (FIXED)
     message = st.text_area(
         "💬 Any message / query (optional)",
-        placeholder="You may leave this empty if you have no message"
+        placeholder="Leave empty if not needed"
     )
 
     submit = st.form_submit_button("🚀 Submit Registration")
 
-# ---------------- VALIDATION & SAVE ----------------
+# ---------------- VALIDATION & GOOGLE SHEETS SAVE ----------------
 if submit:
     if not full_name or not email or not phone:
         st.error("⚠️ Please fill all mandatory fields.")
@@ -165,19 +142,20 @@ if submit:
     else:
         final_university = other_university if university == "Other" else university
 
-        file_exists = os.path.isfile("registrations.csv")
-        with open("registrations.csv", "a", newline="", encoding="utf-8") as f:
-            writer = csv.writer(f)
-            if not file_exists:
-                writer.writerow([
-                    "Timestamp",
-                    "Name",
-                    "Email",
-                    "Phone",
-                    "University",
-                    "Message"
-                ])
-            writer.writerow([
+        try:
+            scope = [
+                "https://spreadsheets.google.com/feeds",
+                "https://www.googleapis.com/auth/drive"
+            ]
+
+            creds = ServiceAccountCredentials.from_json_keyfile_name(
+                "cybersummit2026-18b3bb83282e.json", scope  # Replace with your JSON filename
+            )
+
+            client = gspread.authorize(creds)
+            sheet = client.open("CyberSummit 2026 Registrations").sheet1
+
+            sheet.append_row([
                 datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 full_name,
                 email,
@@ -186,8 +164,7 @@ if submit:
                 message
             ])
 
-        st.markdown(
-            """
+            st.markdown("""
             <div class="success-box">
                 <h3>✅ Registration Successful!</h3>
                 <p>You are now registered for <b>CYBERSUMMIT 2026</b>.</p>
@@ -197,6 +174,7 @@ if submit:
                    👉 Join Official WhatsApp Group
                 </a>
             </div>
-            """,
-            unsafe_allow_html=True
-        )
+            """, unsafe_allow_html=True)
+
+        except Exception as e:
+            st.error(f"❌ Error saving data: {e}")
