@@ -14,30 +14,30 @@ st.set_page_config(
 st.markdown("""
 <style>
 .stApp {
-    background: radial-gradient(circle at top, #0f2027, #000000 60%);
-    color: #E0F7FA;
+    background: radial-gradient(circle at top, #140025, #000000 60%);
+    color: #F3E8FF;
 }
 
 /* Headings */
 h1, h2, h3 {
-    color: #00ffff;
-    text-shadow: 0 0 15px rgba(0,255,255,0.7);
+    color: #A855F7;
+    text-shadow: 0 0 15px rgba(168,85,247,0.7);
     text-align: center;
 }
 
 /* Cards */
 .cyber-card {
-    background: rgba(0,255,255,0.08);
-    border: 1px solid rgba(0,255,255,0.4);
+    background: rgba(168,85,247,0.08);
+    border: 1px solid rgba(168,85,247,0.4);
     border-radius: 16px;
     padding: 20px;
-    box-shadow: 0 0 25px rgba(0,255,255,0.35);
+    box-shadow: 0 0 25px rgba(168,85,247,0.35);
 }
 
 /* Timeline */
 .timeline {
     background: rgba(0,0,0,0.7);
-    border-left: 4px solid #00ffff;
+    border-left: 4px solid #A855F7;
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 10px;
@@ -46,23 +46,23 @@ h1, h2, h3 {
 /* Placeholders */
 .logo-box {
     height: 110px;
-    border: 2px dashed #00ffff;
+    border: 2px dashed #A855F7;
     border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #00ffff;
+    color: #A855F7;
     font-weight: bold;
 }
 
 .flyer-box {
     height: 180px;
-    border: 2px dashed #00ffff;
+    border: 2px dashed #A855F7;
     border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #00ffff;
+    color: #A855F7;
     margin-bottom: 10px;
 }
 
@@ -70,7 +70,7 @@ h1, h2, h3 {
     width: 110px;
     height: 110px;
     border-radius: 50%;
-    border: 2px dashed #00ffff;
+    border: 2px dashed #A855F7;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -80,19 +80,19 @@ h1, h2, h3 {
 
 /* Button */
 div.stButton > button {
-    background: linear-gradient(90deg, #00ffff, #00c6ff);
-    color: #000;
+    background: linear-gradient(90deg, #A855F7, #7E22CE);
+    color: #ffffff;
     font-size: 18px;
     font-weight: bold;
     padding: 14px 40px;
     border-radius: 30px;
     border: none;
-    box-shadow: 0 0 22px rgba(0,255,255,0.8);
+    box-shadow: 0 0 22px rgba(168,85,247,0.8);
     transition: 0.3s ease;
 }
 
 div.stButton > button:hover {
-    box-shadow: 0 0 40px rgba(0,255,255,1);
+    box-shadow: 0 0 40px rgba(168,85,247,1);
     transform: scale(1.05);
 }
 
@@ -110,7 +110,7 @@ div.stButton > button:hover {
 /* Footer */
 .footer {
     text-align: center;
-    color: #9ee7e7;
+    color: #C084FC;
     font-size: 14px;
 }
 </style>
