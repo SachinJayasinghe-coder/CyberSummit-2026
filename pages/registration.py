@@ -57,9 +57,10 @@ input::placeholder, textarea::placeholder {
     color: #C084FC !important;
 }
 
-div.stButton > button {
-    background-color: #ffffff !important;
-    color: #4C1D95 !important;
+/* Submit Button */
+button[data-testid="stFormSubmitButton"] {
+    background-color: #A855F7 !important;
+    color: #ffffff !important;
     font-size: 18px !important;
     font-weight: 800 !important;
     padding: 15px !important;
@@ -67,12 +68,11 @@ div.stButton > button {
     border: none !important;
     width: 100% !important;
     box-shadow: 0 0 25px rgba(168,85,247,0.8) !important;
-    transition: 0.3s ease;
+    transition: all 0.3s ease !important;
 }
 
-div.stButton > button:hover {
-    background-color: #A855F7 !important;
-    color: #ffffff !important;
+button[data-testid="stFormSubmitButton"]:hover {
+    background-color: #7E22CE !important;
     box-shadow: 0 0 40px rgba(168,85,247,1) !important;
     transform: scale(1.04);
 }
@@ -119,7 +119,7 @@ with st.form("registration_form"):
         "Other"
     ]
 
-    # Default = University of Sri Jayewardenepura
+    # Default = Sri Jayewardenepura (index 1)
     university = st.selectbox("🎓 University *", universities, index=1)
 
     other_university = ""
@@ -133,7 +133,7 @@ with st.form("registration_form"):
 
     submit = st.form_submit_button("🚀 Submit Registration")
 
-# ---------------- VALIDATION & GOOGLE SHEETS SAVE ----------------
+# ---------------- SAVE TO GOOGLE SHEETS ----------------
 if submit:
     if not full_name or not email or not phone:
         st.error("⚠️ Please fill all mandatory fields.")
@@ -148,8 +148,10 @@ if submit:
                 "https://www.googleapis.com/auth/drive"
             ]
 
-            creds = ServiceAccountCredentials.from_json_keyfile_name(
-                "cybersummit2026-18b3bb83282e.json", scope  # Replace with your JSON filename
+            # 🔐 Using Streamlit Secrets
+            creds = ServiceAccountCredentials.from_json_keyfile_dict(
+                st.secrets["gcp_service_account"],
+                scope
             )
 
             client = gspread.authorize(creds)
@@ -165,15 +167,10 @@ if submit:
             ])
 
             st.markdown("""
-            <div class="success-box">
-                <h3>✅ Registration Successful!</h3>
-                <p>You are now registered for <b>CYBERSUMMIT 2026</b>.</p>
-                <a href="https://chat.whatsapp.com/YOUR_WHATSAPP_LINK"
-                   target="_blank"
-                   style="color:#25D366;font-size:20px;font-weight:bold;">
-                   👉 Join Official WhatsApp Group
-                </a>
-            </div>
+                <div class="success-box">
+                    <h3>✅ Registration Successful!</h3>
+                    <p>You are now registered for <b>CYBERSUMMIT 2026</b>.</p>
+                </div>
             """, unsafe_allow_html=True)
 
         except Exception as e:
