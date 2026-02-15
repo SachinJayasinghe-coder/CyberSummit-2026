@@ -41,9 +41,26 @@ footer { display: none; }
     text-shadow: 0 0 14px rgba(168,85,247,1);
 }
 
+label {
+    color: #E9D5FF !important;
+    font-weight: 600;
+}
+
+input, textarea, select {
+    background-color: rgba(25,0,40,0.85) !important;
+    color: #F3E8FF !important;
+    border: 1.5px solid #A855F7 !important;
+    border-radius: 12px !important;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #C084FC !important;
+}
+
+/* Submit Button */
 button[data-testid="stFormSubmitButton"] {
     background-color: #A855F7 !important;
-    color: white !important;
+    color: #ffffff !important;
     font-size: 18px !important;
     font-weight: 800 !important;
     padding: 15px !important;
@@ -51,22 +68,22 @@ button[data-testid="stFormSubmitButton"] {
     border: none !important;
     width: 100% !important;
     box-shadow: 0 0 25px rgba(168,85,247,0.8) !important;
-    transition: 0.3s ease !important;
+    transition: all 0.3s ease !important;
 }
 
 button[data-testid="stFormSubmitButton"]:hover {
     background-color: #7E22CE !important;
+    box-shadow: 0 0 40px rgba(168,85,247,1) !important;
     transform: scale(1.04);
 }
 
 .success-box {
-    background: rgba(40, 0, 60, 0.95);
+    background: rgba(40, 0, 60, 0.9);
     border: 1px solid #C084FC;
     border-radius: 18px;
     padding: 30px;
     box-shadow: 0 0 35px rgba(168,85,247,0.6);
     margin-top: 30px;
-    text-align: center;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -102,13 +119,17 @@ with st.form("registration_form"):
         "Other"
     ]
 
+    # Default = Sri Jayewardenepura (index 1)
     university = st.selectbox("🎓 University *", universities, index=1)
 
     other_university = ""
     if university == "Other":
         other_university = st.text_input("✍️ Specify University *")
 
-    message = st.text_area("💬 Any message (optional)")
+    message = st.text_area(
+        "💬 Any message / query (optional)",
+        placeholder="Leave empty if not needed"
+    )
 
     submit = st.form_submit_button("🚀 Submit Registration")
 
@@ -127,17 +148,14 @@ if submit:
                 "https://www.googleapis.com/auth/drive"
             ]
 
+            # 🔐 Using Streamlit Secrets
             creds = ServiceAccountCredentials.from_json_keyfile_dict(
                 st.secrets["gcp_service_account"],
                 scope
             )
 
             client = gspread.authorize(creds)
-
-            # 🔥 Use Spreadsheet ID (safer than name)
-            SPREADSHEET_ID = "YOUR_SPREADSHEET_ID_HERE"
-
-            sheet = client.open_by_key(SPREADSHEET_ID).sheet1
+            sheet = client.open("CyberSummit 2026 Registrations").sheet1
 
             sheet.append_row([
                 datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
