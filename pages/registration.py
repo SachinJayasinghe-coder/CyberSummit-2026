@@ -13,6 +13,25 @@ st.set_page_config(
 # ---------------- STYLES ----------------
 st.markdown("""
 <style>
+/* ===== REMOVE STREAMLIT HEADER (TOP BAR) ===== */
+header[data-testid="stHeader"] {
+    display: none;
+}
+
+/* ===== REMOVE STREAMLIT FOOTER (BOTTOM AREA) ===== */
+footer {
+    display: none;
+}
+
+/* ===== REMOVE MAIN MENU (three dots menu) ===== */
+#MainMenu {
+    visibility: hidden;
+}
+
+/* Remove extra padding at top */
+.main .block-container {
+    padding-top: 1rem;
+}
 
 /* Background */
 .stApp {
