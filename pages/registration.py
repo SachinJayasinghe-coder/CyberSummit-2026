@@ -41,25 +41,9 @@ footer { display: none; }
     text-shadow: 0 0 14px rgba(168,85,247,1);
 }
 
-label {
-    color: #E9D5FF !important;
-    font-weight: 600;
-}
-
-input, textarea, select {
-    background-color: rgba(25,0,40,0.85) !important;
-    color: #F3E8FF !important;
-    border: 1.5px solid #A855F7 !important;
-    border-radius: 12px !important;
-}
-
-input::placeholder, textarea::placeholder {
-    color: #C084FC !important;
-}
-
-div.stButton > button {
-    background-color: #ffffff !important;
-    color: #4C1D95 !important;
+button[data-testid="stFormSubmitButton"] {
+    background-color: #A855F7 !important;
+    color: white !important;
     font-size: 18px !important;
     font-weight: 800 !important;
     padding: 15px !important;
@@ -67,23 +51,22 @@ div.stButton > button {
     border: none !important;
     width: 100% !important;
     box-shadow: 0 0 25px rgba(168,85,247,0.8) !important;
-    transition: 0.3s ease;
+    transition: 0.3s ease !important;
 }
 
-div.stButton > button:hover {
-    background-color: #A855F7 !important;
-    color: #ffffff !important;
-    box-shadow: 0 0 40px rgba(168,85,247,1) !important;
+button[data-testid="stFormSubmitButton"]:hover {
+    background-color: #7E22CE !important;
     transform: scale(1.04);
 }
 
 .success-box {
-    background: rgba(40, 0, 60, 0.9);
+    background: rgba(40, 0, 60, 0.95);
     border: 1px solid #C084FC;
     border-radius: 18px;
     padding: 30px;
     box-shadow: 0 0 35px rgba(168,85,247,0.6);
     margin-top: 30px;
+    text-align: center;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -119,21 +102,17 @@ with st.form("registration_form"):
         "Other"
     ]
 
-    # Default = University of Sri Jayewardenepura
     university = st.selectbox("🎓 University *", universities, index=1)
 
     other_university = ""
     if university == "Other":
         other_university = st.text_input("✍️ Specify University *")
 
-    message = st.text_area(
-        "💬 Any message / query (optional)",
-        placeholder="Leave empty if not needed"
-    )
+    message = st.text_area("💬 Any message (optional)")
 
     submit = st.form_submit_button("🚀 Submit Registration")
 
-# ---------------- VALIDATION & GOOGLE SHEETS SAVE ----------------
+# ---------------- SAVE TO GOOGLE SHEETS ----------------
 if submit:
     if not full_name or not email or not phone:
         st.error("⚠️ Please fill all mandatory fields.")
@@ -148,12 +127,17 @@ if submit:
                 "https://www.googleapis.com/auth/drive"
             ]
 
-            creds = ServiceAccountCredentials.from_json_keyfile_name(
-                "cybersummit2026-18b3bb83282e.json", scope  # Replace with your JSON filename
+            creds = ServiceAccountCredentials.from_json_keyfile_dict(
+                st.secrets["gcp_service_account"],
+                scope
             )
 
             client = gspread.authorize(creds)
-            sheet = client.open("CyberSummit 2026 Registrations").sheet1
+
+            # 🔥 Use Spreadsheet ID (safer than name)
+            SPREADSHEET_ID = "YOUR_SPREADSHEET_ID_HERE"
+
+            sheet = client.open_by_key(SPREADSHEET_ID).sheet1
 
             sheet.append_row([
                 datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -165,15 +149,28 @@ if submit:
             ])
 
             st.markdown("""
-            <div class="success-box">
-                <h3>✅ Registration Successful!</h3>
-                <p>You are now registered for <b>CYBERSUMMIT 2026</b>.</p>
-                <a href="https://chat.whatsapp.com/YOUR_WHATSAPP_LINK"
-                   target="_blank"
-                   style="color:#25D366;font-size:20px;font-weight:bold;">
-                   👉 Join Official WhatsApp Group
-                </a>
-            </div>
+                <div class="success-box">
+                    <h3>✅ Registration Successful!</h3>
+                    <p>You are now registered for <b>CYBERSUMMIT 2026</b>.</p>
+                    <p style="margin-top:15px;font-size:18px;">
+                        📲 Join our Official WhatsApp Group:
+                    </p>
+                    <a href="https://chat.whatsapp.com/YOUR_GROUP_LINK"
+                       target="_blank"
+                       style="
+                            display:inline-block;
+                            margin-top:10px;
+                            padding:12px 25px;
+                            background:#25D366;
+                            color:white;
+                            font-weight:bold;
+                            border-radius:30px;
+                            text-decoration:none;
+                            box-shadow:0 0 20px rgba(37,211,102,0.7);
+                       ">
+                       👉 Join WhatsApp Group
+                    </a>
+                </div>
             """, unsafe_allow_html=True)
 
         except Exception as e:
