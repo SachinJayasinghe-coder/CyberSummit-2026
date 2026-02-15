@@ -167,11 +167,30 @@ if submit:
             ])
 
             st.markdown("""
-                <div class="success-box">
-                    <h3>✅ Registration Successful!</h3>
-                    <p>You are now registered for <b>CYBERSUMMIT 2026</b>.</p>
-                </div>
-            """, unsafe_allow_html=True)
+<div class="success-box">
+    <h3>✅ Registration Successful!</h3>
+    <p>You are now registered for <b>CYBERSUMMIT 2026</b>.</p>
+    <p style="margin-top:15px;font-size:18px;">
+        📲 Join our Official WhatsApp Group:
+    </p>
+    <a href="https://chat.whatsapp.com/YOUR_GROUP_LINK"
+       target="_blank"
+       style="
+            display:inline-block;
+            margin-top:10px;
+            padding:12px 25px;
+            background:#25D366;
+            color:white;
+            font-weight:bold;
+            border-radius:30px;
+            text-decoration:none;
+            box-shadow:0 0 20px rgba(37,211,102,0.7);
+       ">
+       👉 Join WhatsApp Group
+    </a>
+</div>
+""", unsafe_allow_html=True)
+
 
         except Exception as e:
             st.error(f"❌ Error saving data: {e}")
