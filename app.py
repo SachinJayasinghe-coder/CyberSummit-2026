@@ -134,11 +134,12 @@ div.stButton > button:hover {
         margin-right: auto !important;
         width: 360px !important;   /* Proper mobile size */
         max-width: 100% !important;
+        align : center ;
     }
 
     /* Adjust title */
     h1 {
-        font-size: 128px !important;
+        font-size: 32px !important;
         white-space: normal !important;
         text-align: center !important;
     }
