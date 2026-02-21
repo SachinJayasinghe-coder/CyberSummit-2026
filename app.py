@@ -16,6 +16,7 @@ st.set_page_config(
 # ---------------- CYBER THEME ----------------
 st.markdown("""
 <style>
+
 /* ===== REMOVE STREAMLIT HEADER (TOP BAR) ===== */
 header[data-testid="stHeader"] {
     display: none;
@@ -48,6 +49,13 @@ h1, h2, h3 {
     text-align: center;
 }
 
+/* Align Streamlit columns vertically (THIS IS THE FIX) */
+[data-testid="stHeader"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* Cards */
 .cyber-card {
     background: rgba(168,85,247,0.08);
@@ -64,18 +72,6 @@ h1, h2, h3 {
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 10px;
-}
-
-/* Placeholders */
-.logo-box {
-    height: 110px;
-    border: 2px dashed #A855F7;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #A855F7;
-    font-weight: bold;
 }
 
 .flyer-box {
@@ -136,23 +132,37 @@ div.stButton > button:hover {
     color: #C084FC;
     font-size: 14px;
 }
+
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- HEADER ----------------
-c1, c2, c3 = st.columns([1, 3, 1])
+# ---------------- HEADER (PERFECT LAPTOP ALIGNMENT) ----------------
+col1, col2, col3 = st.columns([1, 4, 1])
 
-with c1:
-    st.markdown('<div class="logo-box">PROJECT LOGO</div>', unsafe_allow_html=True)
+with col1:
+    st.image("project_logo.png", width=120)
 
-with c2:
+with col2:
     st.markdown("""
-    <h1>CYBER SUMMIT 2026</h1>
-    <h3>Cyber Security Workshop</h3>
+        <h1 style="
+            margin:0;
+            font-size:60px;
+            font-weight:700;
+            letter-spacing:4px;
+            white-space:nowrap;
+            color:#E9D5FF;
+            text-shadow:
+                0 0 15px #A855F7,
+                0 0 30px #7E22CE;
+        ">
+            CYBER SUMMIT <br>2026
+        </h1>
     """, unsafe_allow_html=True)
 
-with c3:
-    st.markdown('<div class="logo-box">ISACA LOGO</div>', unsafe_allow_html=True)
+with col3:
+    st.markdown('<div style="margin-top:60px;">', unsafe_allow_html=True)
+    st.image("ISACA_logo.png", width=500)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 st.divider()
 
