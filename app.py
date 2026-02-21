@@ -177,7 +177,7 @@ with col2:
         0 0 18px #9333EA,
         0 0 30px #7E22CE;
 ">
-    CYBER SUMMIT <br>   2026
+    CYBER SUMMIT <br>      2026
 </h1>
     """, unsafe_allow_html=True)
 
