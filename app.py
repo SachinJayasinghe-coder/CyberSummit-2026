@@ -119,7 +119,7 @@ div.stButton > button:hover {
 /* ===== MOBILE FIX ===== */
 @media (max-width: 768px) {
 
-    /* Stack columns vertically */
+    /* Stack columns */
     [data-testid="column"] {
         display: block !important;
         width: 100% !important;
@@ -127,22 +127,26 @@ div.stButton > button:hover {
         margin-bottom: 15px;
     }
 
-    [data-testid="column"] img {
-    display: block !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    width: 360px !important;
-    max-width: 100% !important;
-    }
+    /* Project Logo */
+    .project-logo {
+        display: block !important;
+        margin: 0 auto !important;
+        width: 360px !important;
     }
 
-    /* Adjust title */
+    /* ISACA Logo */
+    .isaca-logo {
+        display: block !important;
+        margin: 0 auto !important;
+        width: 360px !important;
+    }
+
+    /* Title */
     h1 {
-        font-size: 32px !important;
-        white-space: normal !important;
+        font-size: 64px !important;
         text-align: center !important;
+        white-space: normal !important;
     }
-
 }
 
 /* Footer */
