@@ -116,10 +116,9 @@ div.stButton > button:hover {
     transform: scale(1.05);
 }
 
-/* ===== MOBILE FIX ===== */
 @media (max-width: 768px) {
 
-    /* Stack columns */
+    /* Stack columns vertically */
     [data-testid="column"] {
         display: block !important;
         width: 100% !important;
@@ -127,21 +126,19 @@ div.stButton > button:hover {
         margin-bottom: 15px;
     }
 
-    /* Project Logo */
-    .project-logo {
-        display: block !important;
-        margin: 0 auto !important;
-        width: 360px !important;
+    /* Center Streamlit image wrapper */
+    [data-testid="column"] div[data-testid="stImage"] {
+        display: flex !important;
+        justify-content: center !important;
     }
 
-    /* ISACA Logo */
-    .isaca-logo {
-        display: block !important;
-        margin: 0 auto !important;
-        width: 360px !important;
+    /* Resize images */
+    [data-testid="column"] img {
+        width: 100px !important;
+        max-width: 100% !important;
     }
 
-    /* Title */
+    /* Center title */
     h1 {
         font-size: 64px !important;
         text-align: center !important;
