@@ -127,14 +127,13 @@ div.stButton > button:hover {
         margin-bottom: 15px;
     }
 
-    /* Center images properly */
     [data-testid="column"] img {
-        display: block !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        width: 360px !important;   /* Proper mobile size */
-        max-width: 100% !important;
-        align : center ;
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 360px !important;
+    max-width: 100% !important;
+    }
     }
 
     /* Adjust title */
