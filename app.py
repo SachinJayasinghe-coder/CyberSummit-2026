@@ -17,22 +17,44 @@ st.set_page_config(
 st.markdown("""
 <style>
 
-/* Remove Streamlit header & footer */
-header[data-testid="stHeader"] { display: none; }
-footer { display: none; }
-#MainMenu { visibility: hidden; }
+/* ===== REMOVE STREAMLIT HEADER (TOP BAR) ===== */
+header[data-testid="stHeader"] {
+    display: none;
+}
 
-.main .block-container { padding-top: 1rem; }
+/* ===== REMOVE STREAMLIT FOOTER (BOTTOM AREA) ===== */
+footer {
+    display: none;
+}
+
+/* ===== REMOVE MAIN MENU (three dots menu) ===== */
+#MainMenu {
+    visibility: hidden;
+}
+
+/* Remove extra padding at top */
+.main .block-container {
+    padding-top: 1rem;
+}
 
 .stApp {
     background: radial-gradient(circle at top, #140025, #000000 60%);
     color: #F3E8FF;
 }
 
+/* Headings */
 h1, h2, h3 {
     color: #A855F7;
     text-shadow: 0 0 15px rgba(168,85,247,0.7);
     text-align: center;
+}
+
+/* Align Streamlit columns vertically (THIS IS THE FIX) */
+[data-testid="column"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 }
 
 /* Cards */
@@ -44,6 +66,7 @@ h1, h2, h3 {
     box-shadow: 0 0 25px rgba(168,85,247,0.35);
 }
 
+/* Timeline */
 .timeline {
     background: rgba(0,0,0,0.7);
     border-left: 4px solid #A855F7;
@@ -52,31 +75,78 @@ h1, h2, h3 {
     border-radius: 10px;
 }
 
-/* Responsive header control */
-.desktop-header { display: block; }
-.mobile-header { display: none; }
+.flyer-box {
+    height: 180px;
+    border: 2px dashed #A855F7;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #A855F7;
+    margin-bottom: 10px;
+}
+
+.avatar {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 2px dashed #A855F7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
+    margin: auto;
+}
+
+/* Button */
+div.stButton > button {
+    background: linear-gradient(90deg, #A855F7, #7E22CE);
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 14px 40px;
+    border-radius: 30px;
+    border: none;
+    box-shadow: 0 0 22px rgba(168,85,247,0.8);
+    transition: 0.3s ease;
+}
+
+div.stButton > button:hover {
+    box-shadow: 0 0 40px rgba(168,85,247,1);
+    transform: scale(1.05);
+}
 
 @media (max-width: 768px) {
 
-    .desktop-header { display: none; }
-
-    .mobile-header {
-        display: block;
-        text-align: center;
+    /* Stack columns vertically */
+    [data-testid="column"] {
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
+        margin-bottom: 15px;
     }
 
-    .mobile-header img {
-        display: block;
-        margin: 10px auto;
+    /* Center Streamlit image wrapper */
+    [data-testid="column"] div[data-testid="stImage"] {
+        display: flex !important;
+        justify-content: center !important;
     }
 
-    .mobile-header h1 {
-        font-size: 32px;
-        margin: 10px 0;
+    /* Resize images */
+    [data-testid="column"] img {
+        width: 100px !important;
+        max-width: 100% !important;
     }
 
+    /* Center title */
+    h1 {
+        font-size: 64px !important;
+        text-align: center !important;
+        white-space: normal !important;
+    }
 }
 
+/* Footer */
 .footer {
     text-align: center;
     color: #C084FC;
@@ -86,24 +156,19 @@ h1, h2, h3 {
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- RESPONSIVE HEADER ----------------
-
-# -------- DESKTOP VERSION --------
-st.markdown('<div class="desktop-header">', unsafe_allow_html=True)
-
-col1, col2, col3 = st.columns([1,5,1])
+# ---------------- HEADER ----------------
+col1, col2, col3 = st.columns([1,3,1])
 
 with col1:
-    st.image("project_logo.png", width=120)
+    st.image("project_logo.png", use_container_width=True)
 
 with col2:
     st.markdown("""
         <h1 style="
             margin:0;
-            font-size:60px;
+            font-size: clamp(28px, 5vw, 60px);
             font-weight:700;
-            letter-spacing:4px;
-            white-space:nowrap;
+            letter-spacing:3px;
             text-align:center;
         ">
             CYBER SUMMIT 2026
@@ -111,19 +176,9 @@ with col2:
     """, unsafe_allow_html=True)
 
 with col3:
-    st.image("ISACA_logo.png", width=120)
+    st.image("ISACA_logo.png", use_container_width=True)
 
-st.markdown('</div>', unsafe_allow_html=True)
-
-
-# -------- MOBILE VERSION --------
-st.markdown('<div class="mobile-header">', unsafe_allow_html=True)
-
-st.image("project_logo.png", width=100)
-st.markdown("<h1>CYBER SUMMIT 2026</h1>", unsafe_allow_html=True)
-st.image("ISACA_logo.png", width=90)
-
-st.markdown('</div>', unsafe_allow_html=True)
+st.divider()
 
 st.divider()
 
