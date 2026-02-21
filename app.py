@@ -164,21 +164,26 @@ with col1:
 
 with col2:
     st.markdown("""
-        <h1 style="
-            margin:0;
-            font-size: clamp(28px, 5vw, 60px);
-            font-weight:700;
-            letter-spacing:3px;
-            text-align:center;
-        ">
-            CYBER SUMMIT 2026
-        </h1>
+    <h1 style="
+    margin:0;
+    font-size:60px;
+    font-weight:700;
+    letter-spacing:4px;
+    white-space:nowrap;
+    text-align:center;
+    color:#C084FC;
+    text-shadow:
+        0 0 8px #A855F7,
+        0 0 18px #9333EA,
+        0 0 30px #7E22CE;
+">
+    CYBER SUMMIT <br> 2026
+</h1>
     """, unsafe_allow_html=True)
 
 with col3:
-    st.image("ISACA_logo.png", use_container_width=True)
-
-st.divider()
+    st.markdown("<br><br>", unsafe_allow_html=True)
+    st.image("ISACA_logo.png", width=480)
 
 st.divider()
 
