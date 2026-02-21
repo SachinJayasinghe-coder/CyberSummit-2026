@@ -165,20 +165,19 @@ with col1:
 with col2:
     st.markdown("""
     <h1 style="
-    margin:0;
-    font-size:60px;
-    font-weight:700;
-    letter-spacing:4px;
-    white-space:nowrap;
-    text-align:center;
-    color:#C084FC;
-    text-shadow:
-        0 0 8px #A855F7,
-        0 0 18px #9333EA,
-        0 0 30px #7E22CE;
-">
-    CYBER SUMMIT <br>      2026
-</h1>
+        margin:0;
+        font-size: clamp(28px, 6vw, 60px);
+        font-weight:700;
+        letter-spacing:4px;
+        text-align:center;
+        color:#C084FC;
+        text-shadow:
+            0 0 8px #A855F7,
+            0 0 18px #9333EA,
+            0 0 30px #7E22CE;
+    ">
+        CYBER SUMMIT 2026
+    </h1>
     """, unsafe_allow_html=True)
 
 with col3:
