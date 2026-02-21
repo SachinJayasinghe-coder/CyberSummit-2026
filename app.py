@@ -141,6 +141,10 @@ div.stButton > button:hover {
         text-align: center !important;
         white-space: normal !important;
     }
+    /* Hide hero title on mobile */
+    .hero-title {
+        display: none !important;
+    }
 }
 
 /* Footer */
@@ -149,7 +153,6 @@ div.stButton > button:hover {
     color: #C084FC;
     font-size: 14px;
 }
-
 </style>
 """, unsafe_allow_html=True)
 
@@ -161,30 +164,27 @@ with col1:
 
 with col2:
     st.markdown("""
-<div style="
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:70vh;
-">
-    <h1 style="
-        margin:0;
-        font-size:90px;
-        font-weight:900;
-        letter-spacing:10px;
-        text-transform:uppercase;
-        text-align:center;
-        background: linear-gradient(90deg,#60A5FA,#C084FC);
-        -webkit-background-clip:text;
-        -webkit-text-fill-color:transparent;
-        text-shadow: 0 8px 40px rgba(59,130,246,0.5);
+    <div style="
+        display:flex;
+        justify-content:center;
+        align-items:center;
     ">
-        <div class="hero-title">
-            <div>CYBER SUMMIT</div>
-            <div>2026</div>
-    </h1>
-</div>
-""", unsafe_allow_html=True)
+        <h1 class="hero-title" style="
+            margin:0;
+            font-size:90px;
+            font-weight:900;
+            letter-spacing:10px;
+            text-transform:uppercase;
+            text-align:center;
+            background: linear-gradient(90deg,#60A5FA,#C084FC);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            text-shadow: 0 8px 40px rgba(59,130,246,0.5);
+        ">
+            CYBER SUMMIT<br>2026
+        </h1>
+    </div>
+    """, unsafe_allow_html=True)
 
 with col3:
     st.markdown("<br><br>", unsafe_allow_html=True)
