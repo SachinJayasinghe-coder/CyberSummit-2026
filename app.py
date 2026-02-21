@@ -13,7 +13,7 @@ st.set_page_config(layout="wide")
 # ---------------- CYBER THEME ----------------
 st.markdown("""
 <style>
-
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700;800;900&display=swap');
 /* ===== REMOVE STREAMLIT HEADER (TOP BAR) ===== */
 header[data-testid="stHeader"] {
     display: none;
@@ -51,6 +51,28 @@ h1, h2, h3 {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+/* HERO CENTERING FIX */
+.hero-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-title {
+    margin: 0;
+    font-size: 60px;
+    font-weight: 5000;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    text-align: center;
+ font-family: 'Exo 2', sans-serif;
+
+    background: linear-gradient(90deg,#60A5FA,#C084FC);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 8px 40px rgba(59,130,246,0.5);
 }
 }
 
@@ -145,6 +167,16 @@ div.stButton > button:hover {
     .hero-title {
         display: none !important;
     }
+    .header-isaca {
+        display: none !important;
+    }
+
+    .mobile-isaca {
+        display: flex !important;
+        justify-content: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
 }
 
 /* Footer */
@@ -164,31 +196,17 @@ with col1:
 
 with col2:
     st.markdown("""
-    <div style="
-        display:flex;
-        justify-content:center;
-        align-items:center;
-    ">
-        <h1 class="hero-title" style="
-            margin:0;
-            font-size:90px;
-            font-weight:900;
-            letter-spacing:10px;
-            text-transform:uppercase;
-            text-align:center;
-            background: linear-gradient(90deg,#60A5FA,#C084FC);
-            -webkit-background-clip:text;
-            -webkit-text-fill-color:transparent;
-            text-shadow: 0 8px 40px rgba(59,130,246,0.5);
-        ">
-            CYBER SUMMIT<br>2026
-        </h1>
+    <div class="hero-container">
+        <div class="hero-title">
+            CYBER<br>SUMMIT<br>2026
+        </div>
     </div>
     """, unsafe_allow_html=True)
 
 with col3:
-    st.markdown("<br><br>", unsafe_allow_html=True)
+    st.markdown('<div class="header-isaca">''<br><br><br>', unsafe_allow_html=True)
     st.image("ISACA_logo.png", width=480)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 st.divider()
 
@@ -287,6 +305,13 @@ with p2:
 
 with p3:
     contact_card("🧑‍💻", "Ravindu Silva", "075 345 6789", "ravindu@email.com")
+
+st.divider()
+
+# ---------------- MOBILE ISACA ----------------
+st.markdown('<div class="mobile-isaca">', unsafe_allow_html=True)
+st.image("ISACA_logo.png", width=200)
+st.markdown('</div>', unsafe_allow_html=True)
 
 st.divider()
 
