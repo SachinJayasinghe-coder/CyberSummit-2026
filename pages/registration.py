@@ -173,7 +173,7 @@ if submit:
                     <p style="margin-top:15px;font-size:18px;">
                         📲 Join our Official WhatsApp Group:
                     </p>
-                    <a href="https://chat.whatsapp.com/YOUR_GROUP_LINK"
+                    <a href="https://chat.whatsapp.com/IBXaMMkkQ0T3AvhxZkJqnr?mode=gi_t"
                        target="_blank"
                        style="
                             display:inline-block;

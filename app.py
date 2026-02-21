@@ -50,10 +50,11 @@ h1, h2, h3 {
 }
 
 /* Align Streamlit columns vertically (THIS IS THE FIX) */
-[data-testid="stHeader"] {
+[data-testid="column"] {
     display: flex;
     align-items: center;
     justify-content: center;
+}
 }
 
 /* Cards */
@@ -116,14 +117,28 @@ div.stButton > button:hover {
 }
 
 /* Mobile */
+/* ===== MOBILE FIX ===== */
 @media (max-width: 768px) {
-    div.stButton > button {
-        width: 100%;
-        font-size: 20px;
-        padding: 16px;
+
+    /* Stack header vertically */
+    [data-testid="column"] {
+        display: block !important;
+        text-align: center !important;
+        width: 100% !important;
+        margin-bottom: 10px;
     }
-    .logo-box { height: 80px; }
-    .flyer-box { height: 140px; }
+
+    h1 {
+        font-size: 32px !important;
+        white-space: normal !important;
+    }
+
+    img {
+        width: 90px !important;
+        margin: auto !important;
+        display: block !important;
+    }
+
 }
 
 /* Footer */
