@@ -184,8 +184,8 @@ div.stButton > button:hover {
         display: none !important;
     }
             
-    .header-isaca {
-        display: none !important;
+    img[alt="header_isaca"] {
+    display: none !important;
     }
             
     .mobile-isaca {
