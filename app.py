@@ -116,27 +116,31 @@ div.stButton > button:hover {
     transform: scale(1.05);
 }
 
-/* Mobile */
 /* ===== MOBILE FIX ===== */
 @media (max-width: 768px) {
 
-    /* Stack header vertically */
+    /* Stack columns vertically */
     [data-testid="column"] {
         display: block !important;
-        text-align: center !important;
         width: 100% !important;
-        margin-bottom: 10px;
+        text-align: center !important;
+        margin-bottom: 15px;
     }
 
-    h1 {
-        font-size: 32px !important;
-        white-space: normal !important;
-    }
-
-    img {
-        width: 90px !important;
-        margin: auto !important;
+    /* Center images properly */
+    [data-testid="column"] img {
         display: block !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        width: 360px !important;   /* Proper mobile size */
+        max-width: 100% !important;
+    }
+
+    /* Adjust title */
+    h1 {
+        font-size: 128px !important;
+        white-space: normal !important;
+        text-align: center !important;
     }
 
 }
