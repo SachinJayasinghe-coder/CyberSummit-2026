@@ -152,7 +152,32 @@ div.stButton > button:hover {
     color: #C084FC;
     font-size: 14px;
 }
+/* ===== MOBILE BOTTOM ISACA LOGO ===== */
+.mobile-isaca {
+    display: none;
+}
 
+@media (max-width: 768px) {
+
+    .mobile-isaca {
+        display: block;
+        position: fixed;
+        bottom: 10px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        z-index: 999;
+    }
+
+    .mobile-isaca img {
+        width: 90px !important;
+    }
+
+    /* Add bottom spacing so content doesn't hide behind fixed logo */
+    .main .block-container {
+        padding-bottom: 120px;
+    }
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -281,6 +306,15 @@ with p2:
 
 with p3:
     contact_card("🧑‍💻", "Ravindu Silva", "075 345 6789", "ravindu@email.com")
+
+st.divider()
+
+# Mobile bottom ISACA logo
+st.markdown("""
+<div class="mobile-isaca">
+    <img src="ISACA_logo.png">
+</div>
+""", unsafe_allow_html=True)
 
 st.divider()
 
