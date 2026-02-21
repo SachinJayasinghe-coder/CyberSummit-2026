@@ -7,11 +7,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 
 # ---------------- PAGE CONFIG ----------------
-st.set_page_config(
-    page_title="CYBERSUMMIT 2026",
-    page_icon="🔐",
-    layout="wide"
-)
+st.set_page_config(layout="wide")
 
 # ---------------- CYBER THEME ----------------
 st.markdown("""
@@ -152,32 +148,7 @@ div.stButton > button:hover {
     color: #C084FC;
     font-size: 14px;
 }
-/* ===== MOBILE BOTTOM ISACA LOGO ===== */
-.mobile-isaca {
-    display: none;
-}
 
-@media (max-width: 768px) {
-
-    .mobile-isaca {
-        display: block;
-        position: fixed;
-        bottom: 10px;
-        left: 0;
-        width: 100%;
-        text-align: center;
-        z-index: 999;
-    }
-
-    .mobile-isaca img {
-        width: 90px !important;
-    }
-
-    /* Add bottom spacing so content doesn't hide behind fixed logo */
-    .main .block-container {
-        padding-bottom: 120px;
-    }
-}
 </style>
 """, unsafe_allow_html=True)
 
@@ -189,21 +160,28 @@ with col1:
 
 with col2:
     st.markdown("""
+<div style="
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:70vh;
+">
     <h1 style="
         margin:0;
-        font-size: clamp(28px, 6vw, 60px);
-        font-weight:700;
-        letter-spacing:4px;
+        font-size:90px;
+        font-weight:900;
+        letter-spacing:10px;
+        text-transform:uppercase;
         text-align:center;
-        color:#C084FC;
-        text-shadow:
-            0 0 8px #A855F7,
-            0 0 18px #9333EA,
-            0 0 30px #7E22CE;
+        background: linear-gradient(90deg,#60A5FA,#C084FC);
+        -webkit-background-clip:text;
+        -webkit-text-fill-color:transparent;
+        text-shadow: 0 8px 40px rgba(59,130,246,0.5);
     ">
-        CYBER SUMMIT 2026
+        CYBER <br> SUMMIT <br> 2026
     </h1>
-    """, unsafe_allow_html=True)
+</div>
+""", unsafe_allow_html=True)
 
 with col3:
     st.markdown("<br><br>", unsafe_allow_html=True)
@@ -306,15 +284,6 @@ with p2:
 
 with p3:
     contact_card("🧑‍💻", "Ravindu Silva", "075 345 6789", "ravindu@email.com")
-
-st.divider()
-
-# Mobile bottom ISACA logo
-st.markdown("""
-<div class="mobile-isaca">
-    <img src="ISACA_logo.png">
-</div>
-""", unsafe_allow_html=True)
 
 st.divider()
 
