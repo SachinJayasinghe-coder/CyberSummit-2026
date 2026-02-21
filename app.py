@@ -9,6 +9,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(layout="wide")
 
+
 # ---------------- CYBER THEME ----------------
 st.markdown("""
 <style>
@@ -178,7 +179,9 @@ with col2:
         -webkit-text-fill-color:transparent;
         text-shadow: 0 8px 40px rgba(59,130,246,0.5);
     ">
-        CYBER <br> SUMMIT <br> 2026
+        <div class="hero-title">
+            <div>CYBER SUMMIT</div>
+            <div>2026</div>
     </h1>
 </div>
 """, unsafe_allow_html=True)
