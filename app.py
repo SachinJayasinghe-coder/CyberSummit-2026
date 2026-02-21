@@ -7,7 +7,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 
 # ---------------- PAGE CONFIG ----------------
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
 
 
 # ---------------- CYBER THEME ----------------
@@ -45,7 +45,16 @@ h1, h2, h3 {
     text-shadow: 0 0 15px rgba(168,85,247,0.7);
     text-align: center;
 }
+/* Remove Sidebar Completely */
+section[data-testid="stSidebar"] {
+    display: none !important;
+}
 
+/* Expand main content full width */
+div[data-testid="stAppViewContainer"] {
+    margin-left: 0 !important;
+}
+            
 /* Align Streamlit columns vertically (THIS IS THE FIX) */
 [data-testid="column"] {
     display: flex;
@@ -134,7 +143,13 @@ div.stButton > button:hover {
     box-shadow: 0 0 40px rgba(168,85,247,1);
     transform: scale(1.05);
 }
-
+            
+.mobile-isaca {
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+            
 @media (max-width: 768px) {
 
     /* Stack columns vertically */
@@ -163,17 +178,24 @@ div.stButton > button:hover {
         text-align: center !important;
         white-space: normal !important;
     }
+            
     /* Hide hero title on mobile */
     .hero-title {
         display: none !important;
     }
+            
     .header-isaca {
         display: none !important;
+            
     }
-
+    [data-testid="column"]:nth-child(3) {
+    display: none !important;
+    }
+            
     .mobile-isaca {
         display: flex !important;
         justify-content: center;
+        align-items: center;
         margin-top: 20px;
         margin-bottom: 20px;
     }
@@ -189,7 +211,7 @@ div.stButton > button:hover {
 """, unsafe_allow_html=True)
 
 # ---------------- HEADER ----------------
-col1, col2, col3 = st.columns([1,3,1])
+col1, col2, col3 = st.columns([1,3,1], gap="small")
 
 with col1:
     st.image("project_logo.png", use_container_width=True)
@@ -204,7 +226,8 @@ with col2:
     """, unsafe_allow_html=True)
 
 with col3:
-    st.markdown('<div class="header-isaca">''<br><br><br>', unsafe_allow_html=True)
+    st.markdown('<div class="header-isaca">', unsafe_allow_html=True)
+    st.markdown("<br><br><br>", unsafe_allow_html=True)
     st.image("ISACA_logo.png", width=480)
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -309,10 +332,12 @@ with p3:
 st.divider()
 
 # ---------------- MOBILE ISACA ----------------
-st.markdown('<div class="mobile-isaca">', unsafe_allow_html=True)
-st.image("ISACA_logo.png", width=200)
-st.markdown('</div>', unsafe_allow_html=True)
-
+# ---------------- MOBILE ISACA ----------------
+st.markdown("""
+<div class="mobile-isaca">
+    <img src="ISACA_logo.png" width="220">
+</div>
+""", unsafe_allow_html=True)
 st.divider()
 
 # ---------------- FOOTER ----------------
