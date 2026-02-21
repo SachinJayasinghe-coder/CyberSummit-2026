@@ -186,10 +186,6 @@ div.stButton > button:hover {
             
     .header-isaca {
         display: none !important;
-            
-    }
-    [data-testid="column"]:nth-child(3) {
-    display: none !important;
     }
             
     .mobile-isaca {
@@ -199,6 +195,10 @@ div.stButton > button:hover {
         margin-top: 20px;
         margin-bottom: 20px;
     }
+    /* Hide ONLY header right column (ISACA) */
+    section.main > div.block-container > div:nth-of-type(1) > div:nth-child(3) {
+    display: none !important;
+}
 }
 
 /* Footer */
