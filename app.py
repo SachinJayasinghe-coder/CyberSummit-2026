@@ -110,18 +110,35 @@ div[data-testid="stAppViewContainer"] {
     text-shadow: 0 8px 40px rgba(59,130,246,0.5);
 }
 
-.cyber-card {
+/* Notice Cards */
+.notice-card {
     background: rgba(168,85,247,0.08);
     border-radius: 18px;
-    overflow: hidden;                 /* IMPORTANT */
+    overflow: hidden;
     box-shadow: 0 0 25px rgba(168,85,247,0.35);
     transition: 0.3s ease;
-    padding: 0;                       /* remove inner padding */
+    padding: 0;
 }
 
-.cyber-card:hover {
+.notice-card:hover {
     transform: translateY(-6px);
     box-shadow: 0 0 40px rgba(168,85,247,0.7);
+}
+
+.notice-text {
+    padding: 15px;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Contact Cards */
+.contact-card {
+    background: rgba(168,85,247,0.08);
+    border: 1px solid rgba(168,85,247,0.4);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 0 25px rgba(168,85,247,0.35);
+    text-align: center;
 }
 
 /* Image inside card */
@@ -309,14 +326,12 @@ st.divider()
 st.markdown("<h2>📢 Notice Board</h2>", unsafe_allow_html=True)
 
 def notice_card(image_path, text):
-    st.markdown('<div class="cyber-card">', unsafe_allow_html=True)
+    st.markdown('<div class="notice-card">', unsafe_allow_html=True)
 
-    st.markdown('<div class="flyer-image">', unsafe_allow_html=True)
     st.image(image_path, use_container_width=True)
-    st.markdown('</div>', unsafe_allow_html=True)
 
     st.markdown(
-        f"<div class='flyer-text'>{text}</div>",
+        f"<div class='notice-text'>{text}</div>",
         unsafe_allow_html=True
     )
 
@@ -342,7 +357,7 @@ p1, p2, p3 = st.columns(3)
 
 def contact_card(icon, name, phone, email):
     st.markdown(f"""
-    <div class="cyber-card" style="text-align:center;">
+    <div class="contact-card">
         <div class="avatar">{icon}</div><br>
         <b>{name}</b><br><br>
         📱 {phone}<br>
