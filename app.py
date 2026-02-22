@@ -22,6 +22,10 @@ if screen_width:
 
 is_mobile = st.session_state.get("screen_width", 1000) < 768
 
+st.markdown("""
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+""", unsafe_allow_html=True)
+
 # ---------------- CYBER THEME ----------------
 st.markdown("""
 <style>
@@ -91,9 +95,10 @@ div[data-testid="stAppViewContainer"] {
 }
 
 .hero-title {
+    font-family: 'Exo 2', sans-serif !important;
     margin: 0;
     font-size: 60px;
-    font-weight: 5000;
+    font-weight: 900;
     letter-spacing: 10px;
     text-transform: uppercase;
     text-align: center;
@@ -105,13 +110,32 @@ div[data-testid="stAppViewContainer"] {
     text-shadow: 0 8px 40px rgba(59,130,246,0.5);
 }
 
-/* Cards */
 .cyber-card {
     background: rgba(168,85,247,0.08);
-    border: 1px solid rgba(168,85,247,0.4);
-    border-radius: 16px;
-    padding: 20px;
+    border-radius: 18px;
+    overflow: hidden;                 /* IMPORTANT */
     box-shadow: 0 0 25px rgba(168,85,247,0.35);
+    transition: 0.3s ease;
+    padding: 0;                       /* remove inner padding */
+}
+
+.cyber-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 40px rgba(168,85,247,0.7);
+}
+
+/* Image inside card */
+.flyer-image img {
+    border-radius: 0;                 /* remove double rounding */
+    display: block;
+}
+
+/* Text area */
+.flyer-text {
+    padding: 15px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 15px;
 }
 
 /* Timeline */
@@ -284,24 +308,30 @@ st.divider()
 # ---------------- NOTICE BOARD ----------------
 st.markdown("<h2>📢 Notice Board</h2>", unsafe_allow_html=True)
 
+def notice_card(image_path, text):
+    st.markdown('<div class="cyber-card">', unsafe_allow_html=True)
+
+    st.markdown('<div class="flyer-image">', unsafe_allow_html=True)
+    st.image(image_path, use_container_width=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    st.markdown(
+        f"<div class='flyer-text'>{text}</div>",
+        unsafe_allow_html=True
+    )
+
+    st.markdown('</div>', unsafe_allow_html=True)
+
 n1, n2, n3 = st.columns(3)
 
-def notice_card(text):
-    st.markdown(f"""
-    <div class="cyber-card">
-        <div class="flyer-box">FLYER IMAGE</div>
-        <p>{text}</p>
-    </div>
-    """, unsafe_allow_html=True)
-
 with n1:
-    notice_card("🚀 Registrations are now open. Secure your seat today!")
+    notice_card("flyer1.png", "🚀 Registrations are now open. Secure your seat today!")
 
 with n2:
-    notice_card("📜 Digital certificates will be provided to all participants.")
+    notice_card("flyer2.png", "📜 Digital certificates will be provided to all participants.")
 
 with n3:
-    notice_card("⚠️ Limited seats available. Register before deadline.")
+    notice_card("flyer3.png", "⚠️ Limited seats available. Register before deadline.")
 
 st.divider()
 
@@ -320,13 +350,11 @@ def contact_card(icon, name, phone, email):
     </div>
     """, unsafe_allow_html=True)
 
-with p1:
-    contact_card("👨‍💻", "Kasun Perera", "077 123 4567", "kasun@email.com")
-
-with p2:
-    contact_card("👩‍💻", "Nimali Fernando", "071 234 5678", "nimali@email.com")
-
-with p3:
+with p1: 
+    contact_card("👨‍💻", "Kasun Perera", "077 123 4567", "kasun@email.com") 
+with p2: 
+    contact_card("👩‍💻", "Nimali Fernando", "071 234 5678", "nimali@email.com") 
+with p3: 
     contact_card("🧑‍💻", "Ravindu Silva", "075 345 6789", "ravindu@email.com")
 
 st.divider()
