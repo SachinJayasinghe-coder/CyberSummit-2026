@@ -97,7 +97,7 @@ div[data-testid="stAppViewContainer"] {
 .hero-title {
     font-family: 'Exo 2', sans-serif !important;
     font-weight: 800;
-    font-size: 60px;
+    font-size: 50px;
     letter-spacing: 8px;
     text-transform: uppercase;
     text-align: center;
