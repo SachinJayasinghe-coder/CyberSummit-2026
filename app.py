@@ -98,17 +98,18 @@ div[data-testid="stAppViewContainer"] {
     font-family: 'Exo 2', sans-serif !important;
     font-weight: 800;
     font-size: 60px;
-    letter-spacing: 10px;
+    letter-spacing: 8px;
     text-transform: uppercase;
     text-align: center;
 
+    display: inline-block;        /* 🔥 IMPORTANT */
+    padding: 20px 40px;
     border: 2px solid #A855F7;
-    padding: 25px 50px;
     border-radius: 18px;
 
-    box-shadow: 
-        0 0 15px #A855F7,
-        0 0 30px rgba(168,85,247,0.6);
+    box-shadow: 0 0 20px rgba(168,85,247,0.6);
+
+    max-width: 95vw;              /* 🔥 Prevent overflow */
 }
 
 .main .block-container {
