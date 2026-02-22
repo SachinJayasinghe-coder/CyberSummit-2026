@@ -269,9 +269,6 @@ with col3:
         st.image("ISACA_logo.png", width=480)
 st.divider()
 
-# ---------------- ABOUT ----------------
-st.markdown("<h2>🔍 What is CYBERSUMMIT 2026?</h2>", unsafe_allow_html=True)
-
 st.markdown("""
 <div class="cyber-card">
 <b>CYBERSUMMIT 2026</b> is <b>the flagship event of ISACA Student Group of
