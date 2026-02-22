@@ -4,7 +4,7 @@ from pathlib import Path
 import os
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-
+import streamlit.components.v1 as components
 
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
@@ -13,12 +13,24 @@ st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
 # ---------------- CYBER THEME ----------------
 st.markdown("""
 <style>
+html, body, [data-testid="stAppViewContainer"] {
+    background: linear-gradient(
+        135deg,
+        #0f051d 0%,
+        #240046 35%,
+        #5a189a 70%,
+        #10002b 100%
+    ) !important;
+    color: #F3E8FF;
+}
+   
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700;800;900&display=swap');
+            
 /* ===== REMOVE STREAMLIT HEADER (TOP BAR) ===== */
 header[data-testid="stHeader"] {
     display: none;
 }
-
+            
 /* ===== REMOVE STREAMLIT FOOTER (BOTTOM AREA) ===== */
 footer {
     display: none;
@@ -33,18 +45,14 @@ footer {
 .main .block-container {
     padding-top: 1rem;
 }
-
-.stApp {
-    background: radial-gradient(circle at top, #140025, #000000 60%);
-    color: #F3E8FF;
-}
-
+            
 /* Headings */
 h1, h2, h3 {
     color: #A855F7;
     text-shadow: 0 0 15px rgba(168,85,247,0.7);
     text-align: center;
 }
+            
 /* Remove Sidebar Completely */
 section[data-testid="stSidebar"] {
     display: none !important;
@@ -61,6 +69,7 @@ div[data-testid="stAppViewContainer"] {
     align-items: center;
     justify-content: center;
 }
+            
 /* HERO CENTERING FIX */
 .hero-container {
     width: 100%;
@@ -82,7 +91,6 @@ div[data-testid="stAppViewContainer"] {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 8px 40px rgba(59,130,246,0.5);
-}
 }
 
 /* Cards */
@@ -143,13 +151,12 @@ div.stButton > button:hover {
     box-shadow: 0 0 40px rgba(168,85,247,1);
     transform: scale(1.05);
 }
-            
-.mobile-isaca {
+.bottom-wrapper {
     display: none;
-    justify-content: center;
-    align-items: center;
 }
-            
+.top-wrapper {
+    display: block;           
+}           
 @media (max-width: 768px) {
 
     /* Stack columns vertically */
@@ -183,24 +190,16 @@ div.stButton > button:hover {
     .hero-title {
         display: none !important;
     }
-            
-    img[alt="header_isaca"] {
-    display: none !important;
-    }
-            
-    .mobile-isaca {
-        display: flex !important;
-        justify-content: center;
-        align-items: center;
+    .bottom-wrapper {
+        display: block !important;
+        text-align: center;
         margin-top: 20px;
-        margin-bottom: 20px;
     }
-    /* Hide ONLY header right column (ISACA) */
-    section.main > div.block-container > div:nth-of-type(1) > div:nth-child(3) {
-    display: none !important;
+    .top-wrapper {
+        display: none !important;
+}        
+ 
 }
-}
-
 /* Footer */
 .footer {
     text-align: center;
@@ -226,8 +225,8 @@ with col2:
     """, unsafe_allow_html=True)
 
 with col3:
-    st.markdown('<div class="header-isaca">', unsafe_allow_html=True)
-    st.markdown("<br><br><br>", unsafe_allow_html=True)
+    st.markdown('<div class="top-wrapper">', unsafe_allow_html=True)
+    st.markdown('<br><br><br>', unsafe_allow_html=True)
     st.image("ISACA_logo.png", width=480)
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -332,13 +331,12 @@ with p3:
 st.divider()
 
 # ---------------- MOBILE ISACA ----------------
-# ---------------- MOBILE ISACA ----------------
-st.markdown("""
-<div class="mobile-isaca">
-    <img src="ISACA_logo.png" width="220">
-</div>
-""", unsafe_allow_html=True)
-st.divider()
+col1, col2, col3 = st.columns([1,1,1], gap="small")
+
+with col2:
+    st.markdown('<div class="bottom-wrapper">', unsafe_allow_html=True)
+    st.image("ISACA_logo.png", width=220)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # ---------------- FOOTER ----------------
 st.markdown(f"""
