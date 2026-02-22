@@ -262,7 +262,8 @@ div.stButton > button:hover {
 col1, col2, col3 = st.columns([1,3,1], gap="small")
 
 with col1:
-    st.image("project_logo.png", use_container_width=64)
+    if not is_mobile:
+       st.image("project_logo.png", use_container_width=64)
 
 with col2:
     st.markdown("""
