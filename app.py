@@ -96,20 +96,29 @@ div[data-testid="stAppViewContainer"] {
 
 .hero-title {
     font-family: 'Exo 2', sans-serif !important;
-    margin: 0;
+    font-weight: 800;
     font-size: 60px;
-    font-weight: 900;
     letter-spacing: 10px;
     text-transform: uppercase;
     text-align: center;
- font-family: 'Exo 2', sans-serif;
 
-    background: linear-gradient(90deg,#60A5FA,#C084FC);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 8px 40px rgba(59,130,246,0.5);
+    border: 2px solid #A855F7;
+    padding: 25px 50px;
+    border-radius: 18px;
+
+    box-shadow: 
+        0 0 15px #A855F7,
+        0 0 30px rgba(168,85,247,0.6);
 }
 
+.main .block-container {
+    padding-top: orem !important;
+}
+            
+.hero-title {
+    line-height: 1.5;
+}
+            
 /* Notice Cards */
 .notice-card {
     background: rgba(168,85,247,0.08);
@@ -252,7 +261,7 @@ div.stButton > button:hover {
 col1, col2, col3 = st.columns([1,3,1], gap="small")
 
 with col1:
-    st.image("project_logo.png", use_container_width=True)
+    st.image("project_logo.png", use_container_width=64)
 
 with col2:
     st.markdown("""
@@ -267,6 +276,7 @@ with col3:
     if not is_mobile:
         st.markdown('<br><br><br>', unsafe_allow_html=True)
         st.image("ISACA_logo.png", width=480)
+st.divider()
 
 st.markdown("""
 <div class="cyber-card">
