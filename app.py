@@ -5,10 +5,22 @@ import os
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import streamlit.components.v1 as components
+from streamlit_js_eval import streamlit_js_eval
 
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
+# Detect screen width
+screen_width = streamlit_js_eval(
+    js_expressions="window.innerWidth",
+    key="SCREEN_WIDTH",
+    want_output=True,
+)
 
+# Store in session state
+if screen_width:
+    st.session_state["screen_width"] = screen_width
+
+is_mobile = st.session_state.get("screen_width", 1000) < 768
 
 # ---------------- CYBER THEME ----------------
 st.markdown("""
@@ -190,16 +202,7 @@ div.stButton > button:hover {
     .hero-title {
         display: none !important;
     }
-    .bottom-wrapper {
-        display: block !important;
-        text-align: center;
-        margin-top: 20px;
-    }
-    .top-wrapper {
-        display: none !important;
 }        
- 
-}
 /* Footer */
 .footer {
     text-align: center;
@@ -225,11 +228,9 @@ with col2:
     """, unsafe_allow_html=True)
 
 with col3:
-    st.markdown('<div class="top-wrapper">', unsafe_allow_html=True)
-    st.markdown('<br><br><br>', unsafe_allow_html=True)
-    st.image("ISACA_logo.png", width=480)
-    st.markdown('</div>', unsafe_allow_html=True)
-
+    if not is_mobile:
+        st.markdown('<br><br><br>', unsafe_allow_html=True)
+        st.image("ISACA_logo.png", width=480)
 st.divider()
 
 # ---------------- ABOUT ----------------
@@ -334,9 +335,8 @@ st.divider()
 col1, col2, col3 = st.columns([1,1,1], gap="small")
 
 with col2:
-    st.markdown('<div class="bottom-wrapper">', unsafe_allow_html=True)
-    st.image("ISACA_logo.png", width=220)
-    st.markdown('</div>', unsafe_allow_html=True)
+    if is_mobile:
+       st.image("ISACA_logo.png", width=220)
 
 # ---------------- FOOTER ----------------
 st.markdown(f"""
