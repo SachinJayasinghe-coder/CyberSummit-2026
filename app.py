@@ -267,7 +267,6 @@ with col3:
     if not is_mobile:
         st.markdown('<br><br><br>', unsafe_allow_html=True)
         st.image("ISACA_logo.png", width=480)
-st.divider()
 
 st.markdown("""
 <div class="cyber-card">
