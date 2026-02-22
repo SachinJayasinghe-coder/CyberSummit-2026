@@ -238,11 +238,6 @@ div.stButton > button:hover {
         text-align: center !important;
         white-space: normal !important;
     }
-            
-    /* Hide hero title on mobile */
-    .hero-title {
-        display: none !important;
-    }
 }        
 /* Footer */
 .footer {
