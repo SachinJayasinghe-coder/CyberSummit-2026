@@ -267,7 +267,7 @@ div.stButton > button:hover {
     }
 
     .mobile-floating-logo img {
-        width: 60px;
+        width: 90px;
         height: auto;
         border-radius: 50%;
         box-shadow: 0 0 15px rgba(168,85,247,0.8);
