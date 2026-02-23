@@ -6,6 +6,13 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import streamlit.components.v1 as components
 from streamlit_js_eval import streamlit_js_eval
+import base64
+
+def get_base64_image(image_path):
+    with open(image_path, "rb") as img:
+        return base64.b64encode(img.read()).decode()
+
+logo_base64 = get_base64_image("project_logo.png")
 
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(layout="wide", initial_sidebar_state="collapsed")
@@ -219,7 +226,10 @@ div.stButton > button:hover {
 }
 .top-wrapper {
     display: block;           
-}           
+}     
+.mobile-floating-logo {
+    display: none;
+}      
 @media (max-width: 768px) {
 
     /* Stack columns vertically */
@@ -247,6 +257,20 @@ div.stButton > button:hover {
         font-size: 64px !important;
         text-align: center !important;
         white-space: normal !important;
+    }
+    .mobile-floating-logo {
+        display: block;
+        position: fixed;
+        top: 90px;
+        left: 15px;
+        z-index: 9999;
+    }
+
+    .mobile-floating-logo img {
+        width: 60px;
+        height: auto;
+        border-radius: 50%;
+        box-shadow: 0 0 15px rgba(168,85,247,0.8);
     }
 }        
 /* Footer */
