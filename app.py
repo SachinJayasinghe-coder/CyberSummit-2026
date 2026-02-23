@@ -269,7 +269,7 @@ div.stButton > button:hover {
     }
 
     .mobile-floating-logo img {
-        width: 90px;
+        width: 180px;
         height: auto;
     }
 }        
