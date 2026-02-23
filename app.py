@@ -282,6 +282,12 @@ div.stButton > button:hover {
 </style>
 """, unsafe_allow_html=True)
 
+st.markdown(f"""
+<div class="mobile-floating-logo">
+    <img src="data:image/png;base64,{logo_base64}">
+</div>
+""", unsafe_allow_html=True)
+
 # ---------------- HEADER ----------------
 col1, col2, col3 = st.columns([1,3,1], gap="small")
 
@@ -329,10 +335,10 @@ st.divider()
 st.markdown("<h2>🗓️ Event Timeline</h2>", unsafe_allow_html=True)
 
 st.markdown("""
-<div class="timeline"><b>📢 Registration Opens</b><br>26 February 2026</div>
-<div class="timeline"><b>⏳ Registration Closes</b><br>6 March 2026 </div>
-<div class="timeline"><b>🎓 Workshop Day</b><br>14 March 2026</div>
-<div class="timeline"><b>🏁 Event Ends</b><br>14 March 2026</div>
+<div class="timeline"><b> Registration Opens</b><br>26 February 2026</div>
+<div class="timeline"><b> Registration Closes</b><br>6 March 2026 </div>
+<div class="timeline"><b> Workshop Day</b><br>14 March 2026</div>
+<div class="timeline"><b> Event Ends</b><br>14 March 2026</div>
 """, unsafe_allow_html=True)
 
 st.divider()
@@ -387,8 +393,8 @@ def contact_card(icon, name, phone, email):
     <div class="contact-card">
         <div class="avatar">{icon}</div><br>
         <b>{name}</b><br><br>
-        📱 {phone}<br>
-        📧 {email}
+        {phone}<br>
+        {email}
     </div>
     """, unsafe_allow_html=True)
 
