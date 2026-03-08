@@ -133,20 +133,20 @@ Welcome to the official registration form for <b>Cyber Summit 2026</b>, the flag
 """, unsafe_allow_html=True)
 
 # -------- BASIC DETAILS --------
-full_name = st.text_input("👤 First & Last Name *")
-email = st.text_input("📧 Email Address *")
-phone = st.text_input("📱 Contact Number *")
+full_name = st.text_input("1. First & Last Name *")
+email = st.text_input("2. Email Address *")
+phone = st.text_input("3. Contact Number *")
 
 # -------- ACADEMIC STATUS --------
 academic_status = st.radio(
-    "🎓 Current Academic Status *",
+    "4. Current Academic Status *",
     [
         "University Undergraduate",
         "Advanced Level Student",
         "School Student",
         "Other"
     ],
-    horizontal=True
+    horizontal=False
 )
 
 # initialize variables
@@ -188,39 +188,39 @@ elif academic_status == "Other":
 
 # -------- PREVIOUS EVENT --------
 previous_event_attended = st.radio(
-    "🛡️ Have you previously attended a cybersecurity event? *",
+    "5. Have you previously attended a cybersecurity event? *",
     ["Yes", "No"],
-    horizontal=True
+    horizontal=False
 )
 
 # -------- KNOWLEDGE LEVEL --------
 cyber_knowledge_level = st.radio(
-    "📊 How would you rate your knowledge of cybersecurity? *",
+    "6. How would you rate your knowledge of cybersecurity? *",
     ["No prior knowledge", "Beginner", "Intermediate", "Advanced"],
-    horizontal=True
+    horizontal=False
 )
 
 # -------- HEARD ABOUT EVENT --------
 hear_about_event = st.text_input(
-    "📢 How did you hear about Cyber Summit'26? (Optional)"
+    "7. How did you hear about Cyber Summit'26? (Optional)"
 )
 
 # -------- FOOD PREFERENCE --------
 food_preference = st.radio(
-    "🍽️ Food Preference *",
+    "8. Food Preference *",
     ["Veg", "Non-Veg"],
-    horizontal=True
+    horizontal=False
 )
 
 # -------- CONSENT --------
 consent_updates = st.radio(
-    "📩 I agree to receive event updates via Whatsapp and Email *",
+    "9. I agree to receive event updates via Whatsapp and Email *",
     ["Yes", "No"],
-    horizontal=True
+    horizontal=False
 )
 
 # -------- MESSAGE --------
-message = st.text_area("💬 Any message / query (optional)")
+message = st.text_area("10. Any message / query (optional)")
 
 # -------- SUBMIT BUTTON --------
 submit = st.button("🚀 Submit Registration", type="primary")
