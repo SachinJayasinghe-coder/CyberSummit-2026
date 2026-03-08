@@ -46,7 +46,7 @@ label {
     font-weight: 600;
 }
 
-input, textarea, select {
+input[type="text"], input[type="email"], textarea, select {
     background-color: rgba(25,0,40,0.85) !important;
     color: #F3E8FF !important;
     border: 1.5px solid #A855F7 !important;
@@ -57,26 +57,6 @@ input::placeholder, textarea::placeholder {
     color: #C084FC !important;
 }
 
-/* Submit Button */
-button[data-testid="stFormSubmitButton"] {
-    background-color: #A855F7 !important;
-    color: #ffffff !important;
-    font-size: 18px !important;
-    font-weight: 800 !important;
-    padding: 15px !important;
-    border-radius: 35px !important;
-    border: none !important;
-    width: 100% !important;
-    box-shadow: 0 0 25px rgba(168,85,247,0.8) !important;
-    transition: all 0.3s ease !important;
-}
-
-button[data-testid="stFormSubmitButton"]:hover {
-    background-color: #7E22CE !important;
-    box-shadow: 0 0 40px rgba(168,85,247,1) !important;
-    transform: scale(1.04);
-}
-
 .success-box {
     background: rgba(40, 0, 60, 0.9);
     border: 1px solid #C084FC;
@@ -85,9 +65,54 @@ button[data-testid="stFormSubmitButton"]:hover {
     box-shadow: 0 0 35px rgba(168,85,247,0.6);
     margin-top: 30px;
 }
+/* ===== FORCE RADIO TEXT PURE WHITE (FINAL FIX) ===== */
+[data-baseweb="radio"] label,
+[data-baseweb="radio"] div,
+[data-baseweb="radio"] span {
+    color: #FFFFFF !important;
+    opacity: 1 !important;
+}
+/* Keep radio circle purple */
+input[type="radio"]:checked {
+    accent-color: #A855F7 !important;
+}
+/* Remove weird red selection */
+input[type="radio"]:checked {
+    accent-color: #A855F7 !important;
+}
+/* ===== STYLE SELECTBOX TO MATCH THEME ===== */
+[data-baseweb="select"] > div {
+    background-color: rgba(25,0,40,0.85) !important;
+    color: #F3E8FF !important;
+    border: 1.5px solid #A855F7 !important;
+    border-radius: 12px !important;
+}
+
+/* Dropdown text */
+[data-baseweb="select"] span {
+    color: #F3E8FF !important;
+}
+
+/* Dropdown arrow */
+[data-baseweb="select"] svg {
+    fill: #F3E8FF !important;
+}
+/* ===== FIX DROPDOWN MENU (Selectbox Options) ===== */
+
+/* Dropdown container */
+[data-baseweb="popover"] {
+    background-color: rgba(25,0,40,0.98) !important;
+}
+/* ===== FORCE STREAMLIT SELECT DROPDOWN DARK THEME ===== */
+
+/* Dropdown portal layer */
+div[data-baseweb="layer"] {
+    background-color: transparent !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
+# ---------------- HEADER ----------------
 # ---------------- HEADER ----------------
 st.markdown("""
 <div class="header-pill">
@@ -95,12 +120,43 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ---------------- FORM ----------------
-with st.form("registration_form"):
+# 👇 ADD PARAGRAPH HERE
+st.markdown("""
+<p style="
+    text-align:center;
+    font-size:16px;
+    color:#E9D5FF;
+    margin-bottom:25px;
+">
+Welcome to the official registration form for <b>Cyber Summit 2026</b>, the flagship cybersecurity event organized by the ISACA Student Group of the University of Sri Jayewardenepura.
+</p>
+""", unsafe_allow_html=True)
 
-    full_name = st.text_input("👤 Full Name *")
-    email = st.text_input("📧 Email Address *")
-    phone = st.text_input("📱 Contact Number *")
+# -------- BASIC DETAILS --------
+full_name = st.text_input("👤 First & Last Name *")
+email = st.text_input("📧 Email Address *")
+phone = st.text_input("📱 Contact Number *")
+
+# -------- ACADEMIC STATUS --------
+academic_status = st.radio(
+    "🎓 Current Academic Status *",
+    [
+        "University Undergraduate",
+        "Advanced Level Student",
+        "School Student",
+        "Other"
+    ],
+    horizontal=True
+)
+
+# initialize variables
+university_name = ""
+other_university = ""
+school_name = ""
+other_status = ""
+
+# -------- CONDITIONAL INSTITUTION FIELD --------
+if academic_status == "University Undergraduate":
 
     universities = [
         "University of Colombo",
@@ -119,28 +175,90 @@ with st.form("registration_form"):
         "Other"
     ]
 
-    # Default = Sri Jayewardenepura (index 1)
-    university = st.selectbox("🎓 University *", universities, index=1)
+    university_name = st.selectbox("🎓 University *", universities, index=None)
 
-    other_university = ""
-    if university == "Other":
+    if university_name == "Other":
         other_university = st.text_input("✍️ Specify University *")
 
-    message = st.text_area(
-        "💬 Any message / query (optional)",
-        placeholder="Leave empty if not needed"
-    )
+elif academic_status in ["Advanced Level Student", "School Student"]:
+    school_name = st.text_input("🏫 Name of School *")
 
-    submit = st.form_submit_button("🚀 Submit Registration")
+elif academic_status == "Other":
+    other_status = st.text_input("✍️ Please specify *")
+
+# -------- PREVIOUS EVENT --------
+previous_event_attended = st.radio(
+    "🛡️ Have you previously attended a cybersecurity event? *",
+    ["Yes", "No"],
+    horizontal=True
+)
+
+# -------- KNOWLEDGE LEVEL --------
+cyber_knowledge_level = st.radio(
+    "📊 How would you rate your knowledge of cybersecurity? *",
+    ["No prior knowledge", "Beginner", "Intermediate", "Advanced"],
+    horizontal=True
+)
+
+# -------- HEARD ABOUT EVENT --------
+hear_about_event = st.text_input(
+    "📢 How did you hear about Cyber Summit'26? (Optional)"
+)
+
+# -------- FOOD PREFERENCE --------
+food_preference = st.radio(
+    "🍽️ Food Preference *",
+    ["Veg", "Non-Veg"],
+    horizontal=True
+)
+
+# -------- CONSENT --------
+consent_updates = st.radio(
+    "📩 I agree to receive event updates via Whatsapp and Email *",
+    ["Yes", "No"],
+    horizontal=True
+)
+
+# -------- MESSAGE --------
+message = st.text_area("💬 Any message / query (optional)")
+
+# -------- SUBMIT BUTTON --------
+submit = st.button("🚀 Submit Registration", type="primary")
 
 # ---------------- SAVE TO GOOGLE SHEETS ----------------
 if submit:
-    if not full_name or not email or not phone:
+
+    # -------- VALIDATION --------
+    if not full_name.strip() or not email.strip() or not phone.strip():
         st.error("⚠️ Please fill all mandatory fields.")
-    elif university == "Other" and not other_university:
+
+    elif "@" not in email or "." not in email:
+        st.error("⚠️ Please enter a valid email address.")
+
+    elif academic_status == "University Undergraduate" and university_name == "Other" and not other_university.strip():
         st.error("⚠️ Please specify your university.")
+
+    elif academic_status == "University Undergraduate" and not university_name:
+        st.error("⚠️ Please select your university.")
+
+    elif academic_status in ["Advanced Level Student", "School Student"] and not school_name:
+        st.error("⚠️ Please enter your school name.")
+
+    elif academic_status == "Other" and not other_status.strip():
+        st.error("⚠️ Please specify your status.")
+
+    elif consent_updates != "Yes":
+        st.error("⚠️ You must agree to receive updates to complete registration.")
+
     else:
-        final_university = other_university if university == "Other" else university
+
+        # -------- FINAL INSTITUTION LOGIC --------
+        if academic_status == "University Undergraduate":
+            final_institution = other_university if university_name == "Other" else university_name
+        elif academic_status in ["Advanced Level Student", "School Student"]:
+            final_institution = school_name
+        else:
+            final_institution = other_status
 
         try:
             scope = [
@@ -148,7 +266,6 @@ if submit:
                 "https://www.googleapis.com/auth/drive"
             ]
 
-            # 🔐 Using Streamlit Secrets
             creds = ServiceAccountCredentials.from_json_keyfile_dict(
                 st.secrets["gcp_service_account"],
                 scope
@@ -162,34 +279,36 @@ if submit:
                 full_name,
                 email,
                 phone,
-                final_university,
+                academic_status,
+                final_institution,
+                previous_event_attended,
+                cyber_knowledge_level,
+                hear_about_event,
+                food_preference,
+                consent_updates,
                 message
             ])
 
-            st.markdown("""
-                <div class="success-box">
-                    <h3>✅ Registration Successful!</h3>
-                    <p>You are now registered for <b>CYBERSUMMIT 2026</b>.</p>
-                    <p style="margin-top:15px;font-size:18px;">
-                        📲 Join our Official WhatsApp Group:
-                    </p>
-                    <a href="https://chat.whatsapp.com/IBXaMMkkQ0T3AvhxZkJqnr?mode=gi_t"
-                       target="_blank"
-                       style="
-                            display:inline-block;
-                            margin-top:10px;
-                            padding:12px 25px;
-                            background:#25D366;
-                            color:white;
-                            font-weight:bold;
-                            border-radius:30px;
-                            text-decoration:none;
-                            box-shadow:0 0 20px rgba(37,211,102,0.7);
-                       ">
-                       👉 Join WhatsApp Group
-                    </a>
-                </div>
-            """, unsafe_allow_html=True)
+            st.success("✅ Registration Successful!")
+            st.balloons()
+            st.success("📢 Join our official WhatsApp group for event updates!")
+            st.markdown(
+                """
+                <a href="https://chat.whatsapp.com/IBXaMMkkQ0T3AvhxZkJqnr?mode=gi_t" target="_blank">
+                    <button style="
+                        background-color:#25D366;
+                        color:white;
+                        padding:12px 25px;
+                        border:none;
+                        border-radius:8px;
+                        font-size:16px;
+                        cursor:pointer;">
+                        Join WhatsApp Group
+                    </button>
+                </a>
+                """,
+                unsafe_allow_html=True
+            )
 
         except Exception as e:
             st.error(f"❌ Error saving data: {e}")

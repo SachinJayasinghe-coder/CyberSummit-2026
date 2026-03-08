@@ -373,7 +373,7 @@ def notice_card(image_path, text):
 n1, n2, n3 = st.columns(3)
 
 with n1:
-    notice_card("flyer1.png", "🚀 Registrations are now open. Secure your seat today!")
+    notice_card("flyer1.png", "Be part of the conversation that strengthens the digital world. 💙At <b>Cyber Summit</b>, cybersecurity takes the spotlight. It’s tackling emerging threats, strengthening defenses, and shaping a safer digital future.Stay connected. More details are on the way. 🚀")
 
 with n2:
     notice_card("flyer2.png", "📜 Digital certificates will be provided to all participants.")
