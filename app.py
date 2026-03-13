@@ -260,7 +260,7 @@ div.stButton > button:hover {
     }
     .mobile-floating-logo {
         display: block;
-        position: fixed;
+        position: static;
         top: 90px;
         left: 15px;
         left: 50%; 
