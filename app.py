@@ -260,7 +260,9 @@ div.stButton > button:hover {
     }
     .mobile-floating-logo {
         display: block;
-        position: relative;
+        top:90px;
+        left:50%
+        transform: translateX(-50%)
     }
 
     .mobile-floating-logo img {
