@@ -214,8 +214,8 @@ food_preference = st.radio(
 
 # -------- CONSENT --------
 consent_updates = st.radio(
-    "9. I agree to receive event updates via Whatsapp and Email *",
-    ["Yes", "No"],
+    "9. I consent to the use of my information for promotional purposes and for recieving information reguarding partnership opportunities *",
+    ["Agree", "Do not agree"],
     horizontal=False
 )
 
@@ -246,9 +246,6 @@ if submit:
 
     elif academic_status == "Other" and not other_status.strip():
         st.error("⚠️ Please specify your status.")
-
-    elif consent_updates != "Yes":
-        st.error("⚠️ You must agree to receive updates to complete registration.")
 
     else:
 

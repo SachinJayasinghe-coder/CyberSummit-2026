@@ -335,10 +335,9 @@ st.divider()
 st.markdown("<h2>🗓️ Event Timeline</h2>", unsafe_allow_html=True)
 
 st.markdown("""
-<div class="timeline"><b> Registration Opens</b><br>26 February 2026</div>
-<div class="timeline"><b> Registration Closes</b><br>6 March 2026 </div>
-<div class="timeline"><b> Workshop Day</b><br>14 March 2026</div>
-<div class="timeline"><b> Event Ends</b><br>14 March 2026</div>
+<div class="timeline"><b> Registration Opens</b><br>14 March 2026</div>
+<div class="timeline"><b> Registration Closes</b><br>24 March 2026 </div>
+<div class="timeline"><b> Workshop Day</b><br>28 March 2026</div>
 """, unsafe_allow_html=True)
 
 st.divider()
@@ -373,13 +372,13 @@ def notice_card(image_path, text):
 n1, n2, n3 = st.columns(3)
 
 with n1:
-    notice_card("flyer1.png", "Be part of the conversation that strengthens the digital world. 💙At <b>Cyber Summit</b>, cybersecurity takes the spotlight. It’s tackling emerging threats, strengthening defenses, and shaping a safer digital future.Stay connected. More details are on the way. 🚀")
+    notice_card("flyer6.png", "The moment is here.⚡️<br>Registrations for <b>Cyber Summit 2026</b> are now open!<br>Secure your spot and be part of the next generation of cybersecurity thinkers. 🚀")
 
 with n2:
-    notice_card("flyer2.png", "📜 Digital certificates will be provided to all participants.")
+    notice_card("flyer5.png", "A new cyber experience is about to begin. ⚡️<br>Registrations for <b>Cyber Summit 2026</b> will be opening soon.Get ready to explore, learn, and step into the future of cybersecurity. 🚀<br>Stay tuned, you won’t want to miss it!")
 
 with n3:
-    notice_card("flyer3.png", "⚠️ Limited seats available. Register before deadline.")
+    notice_card("flyer4.png", "Command the future of Cybersecurity.⚡<br>At <b>Cyber Summit 2026</b>, gain real-world industry exposure, explore emerging trends cyber security, strengthen your risk skills and build a competitive career edge.<br>This is where knowledge meets practical defense. 🚀<br>Be a part of this experience !💙")
 
 st.divider()
 
@@ -388,22 +387,23 @@ st.markdown("<h2>📞 Contact Persons</h2>", unsafe_allow_html=True)
 
 p1, p2, p3 = st.columns(3)
 
-def contact_card(icon, name, phone, email):
+def contact_card(icon, name, position, phone, email):
     st.markdown(f"""
     <div class="contact-card">
         <div class="avatar">{icon}</div><br>
         <b>{name}</b><br><br>
+        {position}<br>
         {phone}<br>
         {email}
     </div>
     """, unsafe_allow_html=True)
 
 with p1: 
-    contact_card("👨‍💻", "Kasun Perera", "077 123 4567", "kasun@email.com") 
+    contact_card("👨‍💻", "Gagani Senanayake", "OC President" , "071 258 1372", "gaganisewsenanayake03@email.com") 
 with p2: 
-    contact_card("👩‍💻", "Nimali Fernando", "071 234 5678", "nimali@email.com") 
+    contact_card("👩‍💻", "Nayanthi Weerasuriya", "Delegates Manager" , "070 585 3798", "nayanthiweerasuriya2003@email.com") 
 with p3: 
-    contact_card("🧑‍💻", "Ravindu Silva", "075 345 6789", "ravindu@email.com")
+    contact_card("🧑‍💻", "Avindi Getawakanda", "Delegates Manager" , "077 261 5050", "avindigetawakanda@email.com")
 
 st.divider()
 
