@@ -214,7 +214,7 @@ food_preference = st.radio(
 
 # -------- CONSENT --------
 consent_updates = st.radio(
-    "9. I consent to the use of my information for promotional purposes and for recieving information reguarding partnership opportunities *",
+    "9. I consent to the use of my information for communication purposes and for recieving information reguarding partnership opportunities *",
     ["Agree", "Do not agree"],
     horizontal=False
 )

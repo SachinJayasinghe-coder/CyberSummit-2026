@@ -263,6 +263,7 @@ div.stButton > button:hover {
         position:fixed;
         top:90px;
         left:50%;
+        transform: translateX(-50%);
         z-index:9999;
     }
 
@@ -335,7 +336,7 @@ st.markdown("<h2>🗓️ Event Timeline</h2>", unsafe_allow_html=True)
 st.markdown("""
 <div class="timeline"><b> Registration Opens</b><br>14 March 2026</div>
 <div class="timeline"><b> Registration Closes</b><br>24 March 2026 </div>
-<div class="timeline"><b> Workshop Day</b><br>28 March 2026</div>
+<div class="timeline"><b> Summit Day</b><br>28 March 2026</div>
 """, unsafe_allow_html=True)
 
 st.divider()
