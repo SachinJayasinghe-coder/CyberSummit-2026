@@ -196,11 +196,10 @@ div[data-testid="stAppViewContainer"] {
     width: 110px;
     height: 110px;
     border-radius: 50%;
-    border: 2px dashed #A855F7;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 38px;
+    font-size: 20px;
     margin: auto;
 }
 
@@ -386,10 +385,19 @@ st.markdown("<h2>📞 Contact Persons</h2>", unsafe_allow_html=True)
 
 p1, p2, p3 = st.columns(3)
 
-def contact_card(icon, name, position, phone, email):
+def load_image(image_path):
+    with open(image_path, "rb") as img:
+        return base64.b64encode(img.read()).decode()
+    
+def contact_card(image, name, position, phone, email):
+
+    img = load_image(image)
+
     st.markdown(f"""
     <div class="contact-card">
-        <div class="avatar">{icon}</div><br>
+        <div class="avatar">
+            <img src="data:image/png;base64,{img}" class="avatar-img">
+        </div><br>
         <b>{name}</b><br><br>
         {position}<br>
         {phone}<br>
@@ -397,12 +405,32 @@ def contact_card(icon, name, position, phone, email):
     </div>
     """, unsafe_allow_html=True)
 
-with p1: 
-    contact_card("👨‍💻", "Gagani Senanayake", "OC President" , "071 258 1372", "gaganisewsenanayake03@email.com") 
-with p2: 
-    contact_card("👩‍💻", "Nayanthi Weerasuriya", "Delegates Manager" , "070 585 3798", "nayanthiweerasuriya2003@email.com") 
-with p3: 
-    contact_card("🧑‍💻", "Avindi Getawakanda", "Delegates Manager" , "077 261 5050", "avindigetawakanda@email.com")
+with p1:
+    contact_card(
+        "Gagani.jpg",
+        "Gagani Senanayake",
+        "OC President",
+        "071 258 1372",
+        "gaganisewsenanayake03@email.com"
+    )
+
+with p2:
+    contact_card(
+        "Nayanthi.jpg",
+        "Nayanthi Weerasuriya",
+        "Delegates Manager",
+        "070 585 3798",
+        "nayanthiweerasuriya2003@email.com"
+    )
+
+with p3:
+    contact_card(
+        "Avindi.JPG",
+        "Avindi Getawakanda",
+        "Delegates Manager",
+        "077 261 5050",
+        "avindigetawakanda@email.com"
+    )
 
 st.divider()
 
