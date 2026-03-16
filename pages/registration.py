@@ -214,7 +214,7 @@ food_preference = st.radio(
 
 # -------- CONSENT --------
 consent_updates = st.radio(
-    "9. I consent to the use of my information for communication purposes and for recieving information reguarding partnership opportunities *",
+    "9. I consent to the use of my information for communication purposes and for recieving information regarding partnership opportunities *",
     ["Agree", "Do not agree"],
     horizontal=False
 )
@@ -272,7 +272,7 @@ if submit:
             sheet = client.open("CyberSummit 2026 Registrations").sheet1
 
             sheet.append_row([
-                datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                datetime.now().strftime("%Y-%m-%D %H:%M:%S"),
                 full_name,
                 email,
                 phone,
