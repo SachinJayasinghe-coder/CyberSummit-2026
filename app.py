@@ -411,7 +411,7 @@ with p1:
         "Gagani Senanayake",
         "OC President",
         "071 258 1372",
-        "gaganisewsenanayake03@email.com"
+        "gaganisewsenanayake03@gmail.com"
     )
 
 with p2:

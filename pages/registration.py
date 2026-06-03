@@ -171,7 +171,10 @@ if academic_status == "University Undergraduate":
         "Wayamba University",
         "Sabaragamuwa University",
         "Uva Wellassa University",
-        "Open University of Sri Lanka",
+        "University of Jaffna",
+        "University of Vawuniya",
+        "University of Visual and Performing Arts",
+        "Gampaha Wickramarachchi University",
         "Other"
     ]
 
