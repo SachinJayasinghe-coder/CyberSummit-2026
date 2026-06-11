@@ -128,187 +128,187 @@ st.markdown("""
     color:#E9D5FF;
     margin-bottom:25px;
 ">
-Welcome to the official registration form for <b>Cyber Summit 2026</b>, the flagship cybersecurity event organized by the ISACA Student Group of the University of Sri Jayewardenepura.
+Registrations are now officially closed.<br>See you at Cyber Summit 2026.
 </p>
 """, unsafe_allow_html=True)
 
 # -------- BASIC DETAILS --------
-full_name = st.text_input("1. First & Last Name *")
-email = st.text_input("2. Email Address *")
-phone = st.text_input("3. Contact Number *")
+#full_name = st.text_input("1. First & Last Name *")
+#email = st.text_input("2. Email Address *")
+#phone = st.text_input("3. Contact Number *")
 
 # -------- ACADEMIC STATUS --------
-academic_status = st.radio(
-    "4. Current Academic Status *",
-    [
-        "University Undergraduate",
-        "Advanced Level Student",
-        "School Student",
-        "Other"
-    ],
-    horizontal=False
-)
+#academic_status = st.radio(
+ #   "4. Current Academic Status *",
+  #  [
+   #     "University Undergraduate",
+    #    "Advanced Level Student",
+     #   "School Student",
+      #  "Other"
+#    ],
+#    horizontal=False
+#)
 
 # initialize variables
-university_name = ""
-other_university = ""
-school_name = ""
-other_status = ""
+#university_name = ""
+#other_university = ""
+#school_name = ""
+#other_status = ""
 
 # -------- CONDITIONAL INSTITUTION FIELD --------
-if academic_status == "University Undergraduate":
+#if academic_status == "University Undergraduate":
 
-    universities = [
-        "University of Colombo",
-        "University of Sri Jayewardenepura",
-        "University of Peradeniya",
-        "University of Moratuwa",
-        "University of Kelaniya",
-        "University of Ruhuna",
-        "Eastern University",
-        "South Eastern University",
-        "Rajarata University",
-        "Wayamba University",
-        "Sabaragamuwa University",
-        "Uva Wellassa University",
-        "University of Jaffna",
-        "University of Vawuniya",
-        "University of Visual and Performing Arts",
-        "Gampaha Wickramarachchi University",
-        "Other"
-    ]
+#    universities = [
+#        "University of Colombo",
+#        "University of Sri Jayewardenepura",
+#        "University of Peradeniya",
+#        "University of Moratuwa",
+#        "University of Kelaniya",
+#        "University of Ruhuna",
+#        "Eastern University",
+#        "South Eastern University",
+#        "Rajarata University",
+#        "Wayamba University",
+#        "Sabaragamuwa University",
+#        "Uva Wellassa University",
+#        "University of Jaffna",
+#        "University of Vawuniya",
+#        "University of Visual and Performing Arts",
+#        "Gampaha Wickramarachchi University",
+#        "Other"
+#    ]
 
-    university_name = st.selectbox("🎓 University *", universities, index=None)
+#    university_name = st.selectbox("🎓 University *", universities, index=None)
 
-    if university_name == "Other":
-        other_university = st.text_input("✍️ Specify University *")
+#    if university_name == "Other":
+#        other_university = st.text_input("✍️ Specify University *")
 
-elif academic_status in ["Advanced Level Student", "School Student"]:
-    school_name = st.text_input("🏫 Name of School *")
+#elif academic_status in ["Advanced Level Student", "School Student"]:
+#    school_name = st.text_input("🏫 Name of School *")
 
-elif academic_status == "Other":
-    other_status = st.text_input("✍️ Please specify *")
+#elif academic_status == "Other":
+#    other_status = st.text_input("✍️ Please specify *")
 
 # -------- PREVIOUS EVENT --------
-previous_event_attended = st.radio(
-    "5. Have you previously attended a cybersecurity event? *",
-    ["Yes", "No"],
-    horizontal=False
-)
+#previous_event_attended = st.radio(
+#    "5. Have you previously attended a cybersecurity event? *",
+#    ["Yes", "No"],
+#    horizontal=False
+#)
 
 # -------- KNOWLEDGE LEVEL --------
-cyber_knowledge_level = st.radio(
-    "6. How would you rate your knowledge of cybersecurity? *",
-    ["No prior knowledge", "Beginner", "Intermediate", "Advanced"],
-    horizontal=False
-)
+#cyber_knowledge_level = st.radio(
+#    "6. How would you rate your knowledge of cybersecurity? *",
+#    ["No prior knowledge", "Beginner", "Intermediate", "Advanced"],
+#    horizontal=False
+#)
 
 # -------- HEARD ABOUT EVENT --------
-hear_about_event = st.text_input(
-    "7. How did you hear about Cyber Summit'26? (Optional)"
-)
+#hear_about_event = st.text_input(
+#    "7. How did you hear about Cyber Summit'26? (Optional)"
+#)
 
 # -------- FOOD PREFERENCE --------
-food_preference = st.radio(
-    "8. Food Preference *",
-    ["Veg", "Non-Veg"],
-    horizontal=False
-)
+#food_preference = st.radio(
+#    "8. Food Preference *",
+#    ["Veg", "Non-Veg"],
+#    horizontal=False
+#)
 
 # -------- CONSENT --------
-consent_updates = st.radio(
-    "9. I consent to the use of my information for communication purposes and for recieving information regarding partnership opportunities *",
-    ["Agree", "Do not agree"],
-    horizontal=False
-)
+#consent_updates = st.radio(
+#    "9. I consent to the use of my information for communication purposes and for recieving information regarding partnership opportunities *",
+#    ["Agree", "Do not agree"],
+#    horizontal=False
+#)
 
 # -------- MESSAGE --------
-message = st.text_area("10. Any message / query (optional)")
+#message = st.text_area("10. Any message / query (optional)")
 
 # -------- SUBMIT BUTTON --------
-submit = st.button("🚀 Submit Registration", type="primary")
+#submit = st.button("🚀 Submit Registration", type="primary")
 
 # ---------------- SAVE TO GOOGLE SHEETS ----------------
-if submit:
+#if submit:
 
     # -------- VALIDATION --------
-    if not full_name.strip() or not email.strip() or not phone.strip():
-        st.error("⚠️ Please fill all mandatory fields.")
+#    if not full_name.strip() or not email.strip() or not phone.strip():
+#        st.error("⚠️ Please fill all mandatory fields.")
 
-    elif "@" not in email or "." not in email:
-        st.error("⚠️ Please enter a valid email address.")
+#    elif "@" not in email or "." not in email:
+#        st.error("⚠️ Please enter a valid email address.")
 
-    elif academic_status == "University Undergraduate" and university_name == "Other" and not other_university.strip():
-        st.error("⚠️ Please specify your university.")
+#    elif academic_status == "University Undergraduate" and university_name == "Other" and not other_university.strip():
+#        st.error("⚠️ Please specify your university.")
 
-    elif academic_status == "University Undergraduate" and not university_name:
-        st.error("⚠️ Please select your university.")
+#    elif academic_status == "University Undergraduate" and not university_name:
+#        st.error("⚠️ Please select your university.")
 
-    elif academic_status in ["Advanced Level Student", "School Student"] and not school_name:
-        st.error("⚠️ Please enter your school name.")
+#    elif academic_status in ["Advanced Level Student", "School Student"] and not school_name:
+#        st.error("⚠️ Please enter your school name.")
 
-    elif academic_status == "Other" and not other_status.strip():
-        st.error("⚠️ Please specify your status.")
+#    elif academic_status == "Other" and not other_status.strip():
+#        st.error("⚠️ Please specify your status.")
 
-    else:
+#    else:
 
         # -------- FINAL INSTITUTION LOGIC --------
-        if academic_status == "University Undergraduate":
-            final_institution = other_university if university_name == "Other" else university_name
-        elif academic_status in ["Advanced Level Student", "School Student"]:
-            final_institution = school_name
-        else:
-            final_institution = other_status
+#        if academic_status == "University Undergraduate":
+#            final_institution = other_university if university_name == "Other" else university_name
+#        elif academic_status in ["Advanced Level Student", "School Student"]:
+#            final_institution = school_name
+#        else:
+#            final_institution = other_status
 
-        try:
-            scope = [
-                "https://spreadsheets.google.com/feeds",
-                "https://www.googleapis.com/auth/drive"
-            ]
+#        try:
+#            scope = [
+#               "https://spreadsheets.google.com/feeds",
+#                "https://www.googleapis.com/auth/drive"
+#            ]
 
-            creds = ServiceAccountCredentials.from_json_keyfile_dict(
-                st.secrets["gcp_service_account"],
-                scope
-            )
+#            creds = ServiceAccountCredentials.from_json_keyfile_dict(
+#                st.secrets["gcp_service_account"],
+#                scope
+#            )
 
-            client = gspread.authorize(creds)
-            sheet = client.open("CyberSummit 2026 Registrations").sheet1
+#            client = gspread.authorize(creds)
+#            sheet = client.open("CyberSummit 2026 Registrations").sheet1
 
-            sheet.append_row([
-                datetime.now().strftime("%Y-%m-%D %H:%M:%S"),
-                full_name,
-                email,
-                phone,
-                academic_status,
-                final_institution,
-                previous_event_attended,
-                cyber_knowledge_level,
-                hear_about_event,
-                food_preference,
-                consent_updates,
-                message
-            ])
+#            sheet.append_row([
+#                datetime.now().strftime("%Y-%m-%D %H:%M:%S"),
+#                full_name,
+#                email,
+#              phone,
+#                academic_status,
+#                final_institution,
+#                previous_event_attended,
+#                cyber_knowledge_level,
+#                hear_about_event,
+#                food_preference,
+#                consent_updates,
+#                message
+#            ])
 
-            st.success("✅ Registration Successful!")
-            st.balloons()
-            st.success("📢 Join our official WhatsApp group for event updates!")
-            st.markdown(
-                """
-                <a href="https://chat.whatsapp.com/IBXaMMkkQ0T3AvhxZkJqnr?mode=gi_t" target="_blank">
-                    <button style="
-                        background-color:#25D366;
-                        color:white;
-                        padding:12px 25px;
-                        border:none;
-                        border-radius:8px;
-                        font-size:16px;
-                        cursor:pointer;">
-                        Join WhatsApp Group
-                    </button>
-                </a>
-                """,
-                unsafe_allow_html=True
-            )
+#            st.success("✅ Registration Successful!")
+#            st.balloons()
+#            st.success("📢 Join our official WhatsApp group for event updates!")
+#            st.markdown(
+#                """
+#                <a href="https://chat.whatsapp.com/IBXaMMkkQ0T3AvhxZkJqnr?mode=gi_t" target="_blank">
+#                    <button style="
+#                        background-color:#25D366;
+#                        color:white;
+#                        padding:12px 25px;
+#                        border:none;
+#                        border-radius:8px;
+#                        font-size:16px;
+#                        cursor:pointer;">
+#                        Join WhatsApp Group
+#                    </button>
+#                </a>
+#                """,
+#                unsafe_allow_html=True
+#            )
 
-        except Exception as e:
-            st.error(f"❌ Error saving data: {e}")
+#        except Exception as e:
+#            st.error(f"❌ Error saving data: {e}")
